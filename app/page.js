@@ -116,16 +116,6 @@ export default function WeddingPage() {
 
       {/* Note: Full content conversion requires all sections from index.html */}
       {/* This is a starter template - add remaining sections as needed */}
-      
-      <div style={{padding: '4rem 2rem', textAlign: 'center', background: 'rgba(232, 180, 184, 0.1)'}}>
-        <h2>Next.js Conversion In Progress</h2>
-        <p>Your original static site remains fully functional at <code>http://localhost:3000</code></p>
-        <p>This Next.js version is running on <code>http://localhost:3001</code></p>
-        <p style={{marginTop: '2rem'}}>
-          <strong>To use your original site:</strong> <code>npm run dev</code><br/>
-          <strong>To use Next.js version:</strong> <code>npm run next:dev</code>
-        </p>
-      </div>
     </>
   )
 }
