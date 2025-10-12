@@ -1,0 +1,7 @@
+node_modules
+nextjs-version
+.git
+*.md
+!README.md
+package-lock.json
+
