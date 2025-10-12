@@ -1,0 +1,100 @@
+═══════════════════════════════════════════════════════════════
+   CHRISTINE & JAY WEDDING - RSVP CONNECTION CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+GOAL: Connect RSVP form to Google Sheet automatically
+
+📊 GOOGLE SHEET:
+https://docs.google.com/spreadsheets/d/1ClZ5TtSu3babJjR-yBmZb7YSTRdRFcgSCbY5aZZY0X4/edit
+
+───────────────────────────────────────────────────────────────
+
+✅ CHECKLIST (Follow in order):
+
+□ 1. OPEN GOOGLE SHEET
+     Open the link above in your browser
+
+□ 2. OPEN APPS SCRIPT EDITOR
+     Click: Extensions → Apps Script
+
+□ 3. COPY THE SCRIPT CODE
+     Open file: GoogleAppsScript_RSVP.gs
+     Copy ALL the code
+
+□ 4. PASTE INTO APPS SCRIPT
+     Delete existing code
+     Paste the copied code
+     Click Save (name it "Wedding RSVP Handler")
+
+□ 5. TEST THE SCRIPT (Optional but recommended)
+     Select: testRSVP from dropdown
+     Click: Run button
+     Authorize when asked
+     Check: View → Logs for "✅ TEST PASSED"
+     Verify: Test entry appears in your Google Sheet
+
+□ 6. DEPLOY AS WEB APP
+     Click: Deploy → New deployment
+     Choose: Web app
+     Set: Execute as = Me
+     Set: Who has access = Anyone
+     Click: Deploy
+     COPY: The Web app URL (save it!)
+
+□ 7. UPDATE YOUR WEBSITE CODE
+     Open file: script.js
+     Find line 359: GOOGLE_SCRIPT_URL = 'https://...'
+     REPLACE the URL with your Web app URL from step 6
+     SAVE the file
+
+□ 8. TEST THE RSVP FORM
+     Run: npm run dev
+     Open your website
+     Go to RSVP section
+     Fill out test data
+     Submit form
+     CHECK: Your Google Sheet for the test entry!
+
+───────────────────────────────────────────────────────────────
+
+🎉 ONCE COMPLETE:
+
+✓ RSVP form will automatically save to Google Sheet
+✓ Data includes: Timestamp, Name, Email, Guests, Message
+✓ No more manual entry needed!
+
+───────────────────────────────────────────────────────────────
+
+📁 HELP FILES:
+
+Quick Guide:        QUICK_START_RSVP.md
+Detailed Guide:     RSVP_SETUP_INSTRUCTIONS.md
+Script Code:        GoogleAppsScript_RSVP.gs
+
+───────────────────────────────────────────────────────────────
+
+⚠️ TROUBLESHOOTING:
+
+Problem: Form shows "not yet connected" error
+Fix: You need to complete steps 1-7 above
+
+Problem: No data appears in Google Sheet
+Fix: Make sure the URL in script.js (line 359) is correct
+     Make sure URL ends with /exec (not /dev)
+
+Problem: Authorization error
+Fix: Click "Advanced" → "Go to project (unsafe)" → "Allow"
+
+Problem: Can't find the URL to paste
+Fix: It's in step 6 after you click Deploy
+     Looks like: https://script.google.com/macros/s/AKfycbx.../exec
+
+───────────────────────────────────────────────────────────────
+
+📞 TEST CONTACTS (for error message):
+
+Jay: 0917 153 9062
+Christine: 0917 122 9492
+
+═══════════════════════════════════════════════════════════════
+
