@@ -5,6 +5,11 @@ node_modules/
 *.log
 npm-debug.log*
 
+# Next.js
+.next/
+out/
+.vercel
+
 # OS files
 .DS_Store
 Thumbs.db
