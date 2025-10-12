@@ -1,0 +1,21 @@
+{
+  "name": "wedding-website-christine-jay",
+  "version": "1.0.0",
+  "description": "Wedding website for Christine Joyce & Jay - January 22, 2026",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/ --watch=.",
+    "start": "live-server --port=3000"
+  },
+  "keywords": [
+    "wedding",
+    "website",
+    "rose-gold"
+  ],
+  "author": "Christine Joyce & Jay",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
+
