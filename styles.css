@@ -399,31 +399,6 @@ body {
    HERO SECTION
    ========================================== */
 
-/* Countdown at Top */
-.countdown-top {
-    position: absolute;
-    top: 100px;
-    left: 0;
-    right: 0;
-    z-index: 5;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 1rem 0;
-    margin: 0;
-}
-
-.countdown-top .countdown-timer {
-    margin: 0;
-    justify-content: center;
-}
-
-.countdown-top .countdown-unit {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
 
 /* Hero Wording Column */
 .hero-wording-column {
@@ -2882,5 +2857,6 @@ body {
          . c o u n t d o w n - t o p   . c o u n t d o w n - l a b e l   { 
                  f o n t - s i z e :   0 . 7 r e m ; 
          } 
- }  
+ } 
+ 
  
