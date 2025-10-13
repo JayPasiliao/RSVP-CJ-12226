@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christine & Jay - January 22, 2026</title>
+    <link rel="icon" type="image/png" href="public/Favicon Logo Rsvp.png">
+    <link rel="shortcut icon" type="image/png" href="public/Favicon Logo Rsvp.png">
+    <link rel="apple-touch-icon" href="public/Favicon Logo Rsvp.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,15 +34,65 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <!-- Video Background -->
+        <video 
+            id="heroVideo"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="hero-video-bg"
+        >
+            <source src="/videos/FDownloader.Net_AQNF3FJ8wmScX3VY7HRIwjxU231BeG13Jm8A2lU4RYjvyJKbd8pFwT2YVCzTVhazp97bmrP3wjUq5Yfyti3Vp6RFryYKAPvqJJfaAYb9EGfghQ_720p_(HD).mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Video Overlay -->
+        <div class="hero-video-overlay"></div>
+
         <div class="hero-background">
             <div class="glitter"></div>
             <div class="glitter"></div>
             <div class="glitter"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-logo-container fade-in">
-                <img src="logo-2.png" alt="Christine & Jay Wedding Logo" class="hero-logo-image">
+            <!-- Two-Column Layout -->
+            <div class="hero-two-column">
+                <!-- LEFT: Logo -->
+                <div class="hero-logo-column">
+                    <div class="hero-logo-container fade-in">
+                        <img src="logo-2.png" alt="Christine & Jay — 01•22•2026" class="hero-logo-image">
+                    </div>
+                </div>
             </div>
+
+            <!-- Countdown Timer -->
+            <div class="countdown-container" data-animate>
+                <div class="countdown-title">Until We Say "I Do"</div>
+                <div class="countdown-timer" id="countdown">
+                    <div class="countdown-unit">
+                        <span class="countdown-number" id="days">000</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="hero-cta">
                 <a href="#details" class="btn-primary">View Details</a>
                 <a href="#rsvp" class="btn-secondary">RSVP</a>
@@ -106,97 +159,145 @@
     <!-- Gallery Section -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
-            <h2 class="section-title" data-animate>Our Love Story</h2>
-            <p class="section-subtitle" data-animate>Cherished moments from our journey together</p>
+            <header class="gallery-header">
+                <h2 class="gallery-title" data-animate>Our Love Story</h2>
+                <p class="gallery-subtitle" data-animate>Cherished moments from our journey together</p>
+            </header>
             
-            <div class="gallery-categories" data-animate>
-                <button class="gallery-tab active" data-category="all">All</button>
-                <button class="gallery-tab" data-category="proposal">Proposal</button>
-                <button class="gallery-tab" data-category="prenup">Pre-Nup</button>
-                <button class="gallery-tab" data-category="highlights">Highlights</button>
+            <div class="gallery-filters" data-animate>
+                <button class="filter-pill active" data-category="all">All</button>
+                <button class="filter-pill" data-category="proposal">Proposal</button>
+                <button class="filter-pill" data-category="prenup">Pre-Nup</button>
+                <button class="filter-pill" data-category="highlights">Highlights</button>
             </div>
 
-            <div class="gallery-grid">
-                <!-- Proposal Photos -->
-                <div class="gallery-item glass-card" data-category="proposal" data-animate>
-                    <img src="proposal-1.jpg" alt="Proposal Photo 1" class="gallery-image">
-                </div>
-                <div class="gallery-item glass-card" data-category="proposal" data-animate>
-                    <img src="proposal-2.jpg" alt="Proposal Photo 2" class="gallery-image">
-                </div>
-                <div class="gallery-item glass-card" data-category="proposal" data-animate>
-                    <img src="proposal-3.jpg" alt="Proposal Photo 3" class="gallery-image">
-                </div>
-                <div class="gallery-item glass-card" data-category="proposal" data-animate>
-                    <img src="proposal-4.jpg" alt="Proposal Photo 4" class="gallery-image">
-                </div>
-                <div class="gallery-item glass-card" data-category="proposal" data-animate>
-                    <img src="proposal-5.jpg" alt="Proposal Photo 5" class="gallery-image">
-                </div>
-                <div class="gallery-item glass-card" data-category="proposal" data-animate>
-                    <img src="proposal-6.jpg" alt="Proposal Photo 6" class="gallery-image">
-                </div>
-                <div class="gallery-item glass-card" data-category="proposal" data-animate>
-                    <img src="proposal-7.jpg" alt="Proposal Photo 7" class="gallery-image">
-                </div>
+            <!-- Moving Photo Galleries -->
+            <div class="moving-galleries">
+                <!-- Proposal Moving Gallery -->
+                <section class="moving-gallery-section" data-category="proposal" data-animate>
+                    <div class="gallery-header">
+                        <h3 class="gallery-title">💕 The Proposal</h3>
+                        <p class="gallery-subtitle">Our special moment captured forever</p>
+                    </div>
+                    <div class="moving-gallery-container">
+                        <div class="moving-gallery-track" data-direction="left">
+                            <div class="photo-card">
+                                <img src="proposal-1.jpg" alt="The Moment" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">The Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="proposal-2.jpg" alt="Preparation" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Preparation</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="proposal-3.jpg" alt="Nervous Energy" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Nervous Energy</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="proposal-4.jpg" alt="The Question" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">The Question</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="proposal-5.jpg" alt="Her Answer" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Her Answer</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="proposal-6.jpg" alt="Celebration" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Celebration</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="proposal-7.jpg" alt="Together" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Together</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                <!-- Pre-Nup Photos -->
-                <div class="gallery-item glass-card" data-category="prenup" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Pre-Nup Photo 1</p>
+                <!-- Pre-Nup Moving Gallery -->
+                <section class="moving-gallery-section" data-category="prenup" data-animate>
+                    <div class="gallery-header">
+                        <h3 class="gallery-title">📸 Pre-Nup Session</h3>
+                        <p class="gallery-subtitle">Beautiful moments before the big day</p>
                     </div>
-                </div>
-                <div class="gallery-item glass-card" data-category="prenup" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Pre-Nup Photo 2</p>
+                    <div class="moving-gallery-container">
+                        <div class="moving-gallery-track" data-direction="right">
+                            <div class="photo-card">
+                                <img src="prenup-1.jpg" alt="Elegant Pose" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Elegant Pose</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="prenup-2.jpg" alt="Romantic Moment" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Romantic Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="prenup-3.jpg" alt="Candid Laugh" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Candid Laugh</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="prenup-4.jpg" alt="Sweet Embrace" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Sweet Embrace</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="prenup-5.jpg" alt="Perfect Shot" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Perfect Shot</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item glass-card" data-category="prenup" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Pre-Nup Photo 3</p>
-                    </div>
-                </div>
-                <div class="gallery-item glass-card" data-category="prenup" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Pre-Nup Photo 4</p>
-                    </div>
-                </div>
-                <div class="gallery-item glass-card" data-category="prenup" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Pre-Nup Photo 5</p>
-                    </div>
-                </div>
-                <div class="gallery-item glass-card" data-category="prenup" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Pre-Nup Photo 6</p>
-                    </div>
-                </div>
+                </section>
 
-                <!-- Highlights Photos -->
-                <div class="gallery-item glass-card" data-category="highlights" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-heart"></i>
-                        <p>Highlight Photo 1</p>
+                <!-- Highlights Moving Gallery -->
+                <section class="moving-gallery-section" data-category="highlights" data-animate>
+                    <div class="gallery-header">
+                        <h3 class="gallery-title">✨ Highlights</h3>
+                        <p class="gallery-subtitle">Our favorite moments together</p>
                     </div>
-                </div>
-                <div class="gallery-item glass-card" data-category="highlights" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-heart"></i>
-                        <p>Highlight Photo 2</p>
+                    <div class="moving-gallery-container">
+                        <div class="moving-gallery-track" data-direction="left">
+                            <div class="photo-card">
+                                <img src="highlight-1.jpg" alt="Adventure Together" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Adventure Together</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="highlight-2.jpg" alt="Quiet Moments" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Quiet Moments</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="highlight-3.jpg" alt="Celebration" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Celebration</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item glass-card" data-category="highlights" data-animate>
-                    <div class="gallery-image-placeholder">
-                        <i class="fas fa-heart"></i>
-                        <p>Highlight Photo 3</p>
-                    </div>
-                </div>
+                </section>
             </div>
         </div>
     </section>
@@ -648,6 +749,31 @@
             </div>
         </div>
     </footer>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="photo-modal">
+        <div class="modal-overlay" onclick="closePhotoModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePhotoModal()" aria-label="Close photo">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-navigation">
+                <button class="modal-prev" onclick="previousPhoto()" aria-label="Previous photo">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="modal-next" onclick="nextPhoto()" aria-label="Next photo">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="modal-image-container">
+                <img id="modalImage" src="" alt="" class="modal-image">
+                <div class="modal-info">
+                    <h3 id="modalTitle" class="modal-title"></h3>
+                    <p id="modalDescription" class="modal-description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

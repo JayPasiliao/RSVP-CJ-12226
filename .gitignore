@@ -1,25 +1,37 @@
-# Dependencies
+# System files and directories
+AppData/
+.cache/
+.cursor/
+.vscode/
+.git-for-windows-updater
+.gitconfig
+.lesshst
+.limpc/
+
+# Node modules
 node_modules/
 
 # Logs
 *.log
-npm-debug.log*
-
-# Next.js
-.next/
-out/
-.vercel
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
 
 # Temporary files
 *.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
 *.swp
+*.swo
 *~
 
+# Build outputs
+dist/
+build/
