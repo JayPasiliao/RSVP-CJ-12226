@@ -1,4 +1,35 @@
 // ==========================================
+// THEME TOGGLE - LIGHT/DARK MODE
+// ==========================================
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const icon = themeToggle.querySelector('i');
+
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+}
+
+// Toggle theme
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    // Update icon
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// ==========================================
 // SMOOTH SCROLLING
 // ==========================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -43,13 +74,24 @@ const nav = document.querySelector('.nav-glass');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
+    const isDarkMode = body.classList.contains('dark-mode');
     
     if (currentScroll > 100) {
-        nav.style.background = 'rgba(255, 255, 255, 0.95)';
-        nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+        if (isDarkMode) {
+            nav.style.background = 'rgba(0, 0, 0, 0.85)';
+            nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+        }
     } else {
-        nav.style.background = 'rgba(255, 255, 255, 0.7)';
-        nav.style.boxShadow = 'none';
+        if (isDarkMode) {
+            nav.style.background = 'rgba(0, 0, 0, 0.6)';
+            nav.style.boxShadow = 'none';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.7)';
+            nav.style.boxShadow = 'none';
+        }
     }
     
     lastScroll = currentScroll;
