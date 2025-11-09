@@ -1,4 +1,15 @@
 /* ==========================================
+   FONTS
+   ========================================== */
+@font-face {
+    font-family: 'Mollani';
+    src: url('Hero Font/mollani/Mollani-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================
    ROOT VARIABLES - Rose Gold & Gold Theme
    ========================================== */
 :root {
@@ -102,11 +113,20 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.2);
+    background: transparent;
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition-smooth);
+    box-shadow: none;
+}
+
+/* Navbar when scrolled down - solid background with dark text */
+.nav-glass.scrolled {
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(25px) saturate(200%);
     -webkit-backdrop-filter: blur(25px) saturate(200%);
     border-bottom: 1px solid rgba(232, 180, 184, 0.3);
-    transition: var(--transition-smooth);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -135,10 +155,18 @@ body {
 .navbar-date {
     font-size: 0.85rem;
     font-weight: 500;
-    color: #000000;
+    color: white;
     letter-spacing: 2px;
     text-align: right;
     margin-right: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-quick);
+}
+
+/* Navbar date when scrolled - dark text */
+.nav-glass.scrolled .navbar-date {
+    color: #000000;
+    text-shadow: none;
 }
 
 .logo {
@@ -158,13 +186,20 @@ body {
 }
 
 .nav-link {
-    color: var(--dark);
+    color: white;
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
     position: relative;
     transition: var(--transition-quick);
     letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Navbar links when scrolled - dark text */
+.nav-glass.scrolled .nav-link {
+    color: var(--dark);
+    text-shadow: none;
 }
 
 .nav-link::after {
@@ -227,9 +262,37 @@ body.dark-mode .theme-toggle:hover {
 /* ==========================================
    DARK MODE STYLES
    ========================================== */
+/* Dark mode navbar - transparent at top, solid when scrolled */
 body.dark-mode .nav-glass {
-    background: rgba(0, 0, 0, 0.6);
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .nav-glass.scrolled {
+    background: rgba(0, 0, 0, 0.85);
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark mode navbar text - white at top, stays white when scrolled */
+body.dark-mode .nav-link {
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .nav-glass.scrolled .nav-link {
+    color: var(--text-primary);
+    text-shadow: none;
+}
+
+body.dark-mode .navbar-date {
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .nav-glass.scrolled .navbar-date {
+    color: var(--text-primary);
+    text-shadow: none;
 }
 
 body.dark-mode .section {
@@ -273,7 +336,9 @@ body.dark-mode .member-icon {
 }
 
 body.dark-mode .hero-video-overlay {
-    background: rgba(0, 0, 0, 0.5);
+    /* Overlay removed - background image should be crisp and clear */
+    display: none !important;
+    background: none !important;
 }
 
 body.dark-mode .countdown-unit {
@@ -802,76 +867,87 @@ body.dark-mode .color-swatch-small {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
+    padding-top: 100px;
+    background: linear-gradient(135deg, #fdf8f5 0%, #fef9f6 50%, #fce8e4 100%);
+    background-image: url('LYD_3210.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
 }
 
-/* Hero Video Background */
+/* Hero Video Background - Removed, using image instead */
 .hero-video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    z-index: 0;
-    opacity: 1;
+    display: none;
 }
 
 .hero-video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    z-index: 1;
-    pointer-events: none;
+    /* Overlay removed - background image should be crisp and clear */
+    display: none !important;
+    background: none !important;
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
-    text-align: center;
+    text-align: left;
     color: white;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 2rem 4rem;
+    max-width: 600px;
+    margin-left: 8%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero-text-overlay {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     margin-bottom: 3rem;
 }
 
 .hero-logo-top {
     margin-bottom: 1.5rem;
+    margin-left: 4rem;
+    position: relative;
+    z-index: 1001;
     animation: fadeInDown 1s ease-out;
 }
 
 .hero-logo-img {
-    max-width: 250px;
+    max-width: 400px;
+    width: 100%;
     height: auto;
     filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
     animation: fadeIn 1.5s ease-out;
 }
 
 .hero-names {
-    font-family: var(--font-heading);
-    font-size: 4.5rem;
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: 3px;
+    font-family: 'Mollani', var(--font-heading);
+    font-size: 8rem;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 2px;
     margin: 0;
     color: white;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 2px 10px rgba(0, 0, 0, 0.5);
     animation: fadeInUp 1s ease-out 0.3s both;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    gap: 0.2rem;
+}
+
+.hero-name-line {
+    display: block;
 }
 
 .hero-announcement {
@@ -882,7 +958,7 @@ body.dark-mode .color-swatch-small {
     text-transform: uppercase;
     margin: 0.5rem 0;
     color: white;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 5px rgba(0, 0, 0, 0.5);
     animation: fadeInUp 1s ease-out 0.5s both;
 }
 
@@ -892,15 +968,15 @@ body.dark-mode .color-swatch-small {
     font-weight: 300;
     letter-spacing: 2px;
     margin: 0;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 1px 5px rgba(0, 0, 0, 0.5);
     animation: fadeInUp 1s ease-out 0.7s both;
 }
 
 .hero-cta {
     display: flex;
     gap: 1.5rem;
-    justify-content: center;
+    justify-content: flex-start;
     animation: fadeInUp 1s ease-out 0.9s both;
 }
 
@@ -1041,7 +1117,7 @@ body.dark-mode .color-swatch-small {
 
 .countdown-title {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-style: italic;
     color: var(--dark);
     margin-bottom: 2rem;
@@ -1058,7 +1134,7 @@ body.dark-mode .color-swatch-small {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
     margin: 2rem 0;
 }
@@ -1071,13 +1147,13 @@ body.dark-mode .color-swatch-small {
     backdrop-filter: blur(25px) saturate(200%);
     -webkit-backdrop-filter: blur(25px) saturate(200%);
     border-radius: 20px;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     transition: var(--transition-smooth);
-    min-width: 100px;
+    min-width: 140px;
     position: relative;
     overflow: hidden;
 }
@@ -1106,7 +1182,7 @@ body.dark-mode .color-swatch-small {
 
 .countdown-number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
+    font-size: 4.5rem;
     font-weight: 600;
     font-style: italic;
     color: var(--dark);
@@ -1131,7 +1207,7 @@ body.dark-mode .color-swatch-small {
 
 .countdown-label {
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: var(--gray);
     text-transform: uppercase;
@@ -1141,7 +1217,7 @@ body.dark-mode .color-swatch-small {
 
 .countdown-separator {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 300;
     color: var(--gold);
     animation: separatorBlink 2s ease-in-out infinite;
@@ -1155,6 +1231,20 @@ body.dark-mode .color-swatch-small {
     51%, 100% {
         opacity: 0.3;
     }
+}
+
+.countdown-message {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-top: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
+    animation: fadeInUp 1.5s ease-out 0.8s both;
 }
 
 /* Countdown Animation Effects */
@@ -1211,33 +1301,9 @@ body.dark-mode .color-swatch-small {
 }
 
 /* ==========================================
-   HERO SECTION
+   HERO SECTION (Additional styles)
    ========================================== */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background: transparent;
-    padding-top: 80px; /* Add padding to account for fixed navbar */
-}
-
-/* Removed hero::after overlay to allow video background to show */
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(253, 248, 245, 0.7);
-    z-index: 2;
-    pointer-events: none;
-}
+/* Main .hero styles are at line 800 with background image */
 
 .hero-background {
     position: absolute;
@@ -1281,20 +1347,7 @@ body.dark-mode .color-swatch-small {
     }
 }
 
-.hero-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    animation: heroFadeIn 2s ease-out;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-radius: 0;
-    padding: 3rem;
-    margin: 1rem;
-    box-shadow: none;
-    border: none;
-}
+/* Duplicate hero-content rule removed - using main definition above */
 
 /* Framer Motion-like animations */
 @keyframes heroFadeIn {
@@ -1599,7 +1652,7 @@ body.dark-mode .color-swatch-small {
 }
 
 .glass-card:hover {
-    transform: translateY(-10px) rotateX(5deg);
+    transform: translateY(-10px) rotateX(3deg);
     box-shadow: 0 20px 60px rgba(232, 180, 184, 0.2);
     border-color: var(--rose-gold);
 }
@@ -2350,12 +2403,19 @@ body.dark-mode .color-swatch-small {
     display: flex;
     gap: 2rem;
     height: 100%;
-    animation: scrollLeft 30s linear infinite;
+    width: max-content;
+    animation: scrollLeft 80s linear infinite;
     will-change: transform;
+    flex-wrap: nowrap;
 }
 
 .moving-gallery-track[data-direction="right"] {
-    animation: scrollRight 30s linear infinite;
+    animation: scrollRight 80s linear infinite;
+}
+
+/* Slow down Pre-Nup Session gallery */
+.moving-gallery-section[data-category="prenup"] .moving-gallery-track {
+    animation-duration: 120s;
 }
 
 .photo-card {
@@ -2415,19 +2475,19 @@ body.dark-mode .color-swatch-small {
 /* Scroll Animations */
 @keyframes scrollLeft {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }
 
 @keyframes scrollRight {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(100%);
+        transform: translateX(-50%);
     }
 }
 
@@ -3358,12 +3418,16 @@ body.dark-mode .color-swatch-small {
         font-size: 1rem;
     }
     
+    .hero-logo-top {
+        margin-left: 2.5rem;
+    }
+    
     .hero-logo-img {
-        max-width: 180px;
+        max-width: 300px;
     }
     
     .hero-names {
-        font-size: 2.8rem;
+        font-size: 5.5rem;
         letter-spacing: 2px;
     }
     
@@ -3462,6 +3526,12 @@ body.dark-mode .color-swatch-small {
         grid-template-columns: 1fr;
     }
     
+    .hero-content {
+        padding: 2rem 2rem;
+        max-width: 100%;
+        margin-left: 5%;
+    }
+    
     .hero-cta {
         flex-direction: column;
         gap: 1rem;
@@ -3518,12 +3588,16 @@ body.dark-mode .color-swatch-small {
         margin-left: auto;
     }
     
+    .hero-logo-top {
+        margin-left: 1.5rem;
+    }
+    
     .hero-logo-img {
-        max-width: 150px;
+        max-width: 250px;
     }
     
     .hero-names {
-        font-size: 2rem;
+        font-size: 4rem;
         letter-spacing: 1px;
     }
     
@@ -3534,6 +3608,12 @@ body.dark-mode .color-swatch-small {
     
     .hero-date-time {
         font-size: 0.75rem;
+    }
+    
+    .hero-content {
+        padding: 2rem 1.5rem;
+        max-width: 100%;
+        margin-left: 3%;
     }
     
     .hero-cta {

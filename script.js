@@ -69,33 +69,26 @@ document.querySelectorAll('[data-animate]').forEach(el => {
 // ==========================================
 // NAVIGATION BACKGROUND ON SCROLL
 // ==========================================
-let lastScroll = 0;
 const nav = document.querySelector('.nav-glass');
 
-window.addEventListener('scroll', () => {
+// Check initial scroll position
+function updateNavbar() {
     const currentScroll = window.pageYOffset;
-    const isDarkMode = body.classList.contains('dark-mode');
     
-    if (currentScroll > 100) {
-        if (isDarkMode) {
-            nav.style.background = 'rgba(0, 0, 0, 0.85)';
-            nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
-        } else {
-            nav.style.background = 'rgba(255, 255, 255, 0.95)';
-            nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-        }
+    if (currentScroll > 50) {
+        // Scrolled down - solid background with dark text
+        nav.classList.add('scrolled');
     } else {
-        if (isDarkMode) {
-            nav.style.background = 'rgba(0, 0, 0, 0.6)';
-            nav.style.boxShadow = 'none';
-        } else {
-            nav.style.background = 'rgba(255, 255, 255, 0.7)';
-            nav.style.boxShadow = 'none';
-        }
+        // At top - transparent with white text
+        nav.classList.remove('scrolled');
     }
-    
-    lastScroll = currentScroll;
-});
+}
+
+// Update on scroll
+window.addEventListener('scroll', updateNavbar);
+
+// Update on page load
+updateNavbar();
 
 // ==========================================
 // PARALLAX EFFECT FOR HERO SECTION
@@ -120,7 +113,7 @@ window.addEventListener('scroll', () => {
 // ==========================================
 document.querySelectorAll('.glass-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) rotateX(5deg)';
+        this.style.transform = 'translateY(-10px) rotateX(3deg)';
     });
     
     card.addEventListener('mouseleave', function() {
@@ -160,55 +153,10 @@ function playVideo() {
     }
 }
 
-// Auto-play hero video background
-function initHeroVideo() {
-    const video = document.getElementById('heroVideo');
-    
-    if (video) {
-        // Set video properties for autoplay
-        video.muted = true;
-        video.loop = true;
-        video.autoplay = true;
-        video.playsInline = true;
-        
-        // Force play the video
-        const playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                console.log('Hero video is playing automatically');
-            }).catch(error => {
-                console.log('Hero video autoplay failed:', error);
-                // Retry after a short delay
-                setTimeout(() => {
-                    video.play().catch(() => {});
-                }, 1000);
-            });
-        }
-    }
-}
+// Hero video code removed - using image background instead
 
-// Initialize hero video when page loads
+// Initialize components when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize hero video
-    setTimeout(initHeroVideo, 500);
-    setTimeout(initHeroVideo, 1500);
-    setTimeout(initHeroVideo, 3000);
-    
-    // Also try when video is loaded
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) {
-        heroVideo.addEventListener('loadeddata', function() {
-            console.log('Hero video loaded, attempting to play');
-            initHeroVideo();
-        });
-        
-        heroVideo.addEventListener('canplay', function() {
-            console.log('Hero video can play, attempting to play');
-            initHeroVideo();
-        });
-    }
-    
     // Initialize folder tiles
     setTimeout(initFolderTiles, 1000);
     
@@ -362,8 +310,8 @@ document.querySelectorAll('.glass-card').forEach(card => {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
+        const rotateX = (y - centerY) / 100;
+        const rotateY = (centerX - x) / 100;
         
         this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
     });

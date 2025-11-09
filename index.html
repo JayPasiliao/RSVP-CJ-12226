@@ -37,21 +37,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Video Background -->
-        <video 
-            id="heroVideo"
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="auto"
-            class="hero-video-bg"
-        >
-            <source src="public/videos/Proposal Video/FDownloader.Net_AQNF3FJ8wmScX3VY7HRIwjxU231BeG13Jm8A2lU4RYjvyJKbd8pFwT2YVCzTVhazp97bmrP3wjUq5Yfyti3Vp6RFryYKAPvqJJfaAYb9EGfghQ_720p_(HD).mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video>
-        
-        <!-- Video Overlay -->
+        <!-- Image Background Overlay -->
         <div class="hero-video-overlay"></div>
 
 
@@ -61,7 +47,10 @@
                 <div class="hero-logo-top">
                     <img src="logo-2.png" alt="Christine & Jay Wedding Logo" class="hero-logo-img">
                 </div>
-                <h1 class="hero-names">Christine & Jay</h1>
+                <h1 class="hero-names">
+                    <span class="hero-name-line">Christine</span>
+                    <span class="hero-name-line">and Jay</span>
+                </h1>
                 <p class="hero-announcement">WE'RE GETTING MARRIED</p>
                 <p class="hero-date-time">JANUARY 22, 2026 • 2:00 PM</p>
             </div>
@@ -131,6 +120,7 @@
                         <span class="countdown-label">Seconds</span>
                     </div>
                 </div>
+                <p class="countdown-message">Each passing moment brings us closer to saying "I do." The wait may feel long, but every second is a beautiful reminder that love is worth the time it takes to reach forever.</p>
             </div>
         </div>
     </section>
@@ -167,7 +157,6 @@
                 <button class="filter-pill active" data-category="all">All</button>
                 <button class="filter-pill" data-category="proposal">Proposal</button>
                 <button class="filter-pill" data-category="prenup">Pre-Nup</button>
-                <button class="filter-pill" data-category="highlights">Highlights</button>
             </div>
 
             <!-- Moving Photo Galleries -->
@@ -181,43 +170,86 @@
                     <div class="moving-gallery-container">
                         <div class="moving-gallery-track" data-direction="left">
                             <div class="photo-card">
-                                <img src="proposal-1.jpg" alt="The Moment" loading="lazy">
+                                <img src="public/proposal-1.jpg" alt="The Moment" loading="lazy">
                                 <div class="photo-overlay">
                                     <span class="photo-title">The Moment</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="proposal-2.jpg" alt="Preparation" loading="lazy">
+                                <img src="public/proposal-2.jpg" alt="Preparation" loading="lazy">
                                 <div class="photo-overlay">
                                     <span class="photo-title">Preparation</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="proposal-3.jpg" alt="Nervous Energy" loading="lazy">
+                                <img src="public/proposal-3.jpg" alt="Nervous Energy" loading="lazy">
                                 <div class="photo-overlay">
                                     <span class="photo-title">Nervous Energy</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="proposal-4.jpg" alt="The Question" loading="lazy">
+                                <img src="public/proposal-4.jpg" alt="The Question" loading="lazy">
                                 <div class="photo-overlay">
                                     <span class="photo-title">The Question</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="proposal-5.jpg" alt="Her Answer" loading="lazy">
+                                <img src="public/proposal-5.jpg" alt="Her Answer" loading="lazy">
                                 <div class="photo-overlay">
                                     <span class="photo-title">Her Answer</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="proposal-6.jpg" alt="Celebration" loading="lazy">
+                                <img src="public/proposal-6.jpg" alt="Celebration" loading="lazy">
                                 <div class="photo-overlay">
                                     <span class="photo-title">Celebration</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="proposal-7.jpg" alt="Together" loading="lazy">
+                                <img src="public/proposal-7.jpg" alt="Together" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Together</span>
+                                </div>
+                            </div>
+                            <!-- Duplicated images for seamless loop -->
+                            <div class="photo-card">
+                                <img src="public/proposal-1.jpg" alt="The Moment" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">The Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="public/proposal-2.jpg" alt="Preparation" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Preparation</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="public/proposal-3.jpg" alt="Nervous Energy" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Nervous Energy</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="public/proposal-4.jpg" alt="The Question" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">The Question</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="public/proposal-5.jpg" alt="Her Answer" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Her Answer</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="public/proposal-6.jpg" alt="Celebration" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Celebration</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="public/proposal-7.jpg" alt="Together" loading="lazy">
                                 <div class="photo-overlay">
                                     <span class="photo-title">Together</span>
                                 </div>
@@ -235,68 +267,526 @@
                     <div class="moving-gallery-container">
                         <div class="moving-gallery-track" data-direction="right">
                             <div class="photo-card">
-                                <img src="prenup-1.jpg" alt="Elegant Pose" loading="lazy">
+                                <img src="Prenup Photos/LYD_2376.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Elegant Pose</span>
+                                    <span class="photo-title">Beautiful Moment</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="prenup-2.jpg" alt="Romantic Moment" loading="lazy">
+                                <img src="Prenup Photos/LYD_2399.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Romantic Moment</span>
+                                    <span class="photo-title">Beautiful Moment</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="prenup-3.jpg" alt="Candid Laugh" loading="lazy">
+                                <img src="Prenup Photos/LYD_2451.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Candid Laugh</span>
+                                    <span class="photo-title">Beautiful Moment</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="prenup-4.jpg" alt="Sweet Embrace" loading="lazy">
+                                <img src="Prenup Photos/LYD_2503.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Sweet Embrace</span>
+                                    <span class="photo-title">Beautiful Moment</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="prenup-5.jpg" alt="Perfect Shot" loading="lazy">
+                                <img src="Prenup Photos/LYD_2528.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Perfect Shot</span>
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2580.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2644.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2647.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2691.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2724.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2730.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2758.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2798.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2814.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2866.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2875.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2884.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2943.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2945.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2960.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3018.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3032.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3082.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3089.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3128.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3166.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3210.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3238.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3251.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3264.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3355.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3363.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3476.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3518.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3550.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3594.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3638.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3668.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3695.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3704.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3748.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3782.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3796.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <!-- Duplicated images for seamless loop -->
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2376.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2399.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2451.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2503.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2528.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2580.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2644.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2647.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2691.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2724.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2730.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2758.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2798.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2814.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2866.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2875.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2884.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2943.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2945.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_2960.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3018.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3032.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3082.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3089.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3128.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3166.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3210.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3238.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3251.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3264.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3355.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3363.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3476.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3518.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3550.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3594.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3638.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3668.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3695.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3704.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3748.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3782.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/LYD_3796.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Beautiful Moment</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Highlights Moving Gallery -->
-                <section class="moving-gallery-section" data-category="highlights" data-animate>
-                    <div class="gallery-header">
-                        <h3 class="gallery-title">✨ Highlights</h3>
-                        <p class="gallery-subtitle">Our favorite moments together</p>
-                    </div>
-                    <div class="moving-gallery-container">
-                        <div class="moving-gallery-track" data-direction="left">
-                            <div class="photo-card">
-                                <img src="highlight-1.jpg" alt="Adventure Together" loading="lazy">
-                                <div class="photo-overlay">
-                                    <span class="photo-title">Adventure Together</span>
-                                </div>
-                            </div>
-                            <div class="photo-card">
-                                <img src="highlight-2.jpg" alt="Quiet Moments" loading="lazy">
-                                <div class="photo-overlay">
-                                    <span class="photo-title">Quiet Moments</span>
-                                </div>
-                            </div>
-                            <div class="photo-card">
-                                <img src="highlight-3.jpg" alt="Celebration" loading="lazy">
-                                <div class="photo-overlay">
-                                    <span class="photo-title">Celebration</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
     </section>
