@@ -7,11 +7,22 @@
     <link rel="icon" type="image/png" href="public/Favicon Logo Rsvp.png">
     <link rel="shortcut icon" type="image/png" href="public/Favicon Logo Rsvp.png">
     <link rel="apple-touch-icon" href="public/Favicon Logo Rsvp.png">
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="preload" href="logo-2.png" as="image" fetchpriority="high">
+    <link rel="preload" href="LYD_3210.jpg" as="image" fetchpriority="high">
+    <style>
+        /* Critical CSS - inline for faster initial render */
+        body{margin:0;padding:0;font-family:Montserrat,sans-serif;overflow-x:hidden}
+        .nav-glass{position:fixed;top:0;left:0;right:0;z-index:1000;background:transparent;backdrop-filter:blur(10px)}
+        .hero{min-height:100vh;display:flex;align-items:center;background-size:cover;background-position:center}
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -45,7 +56,7 @@
         <div class="hero-content">
             <div class="hero-text-overlay">
                 <div class="hero-logo-top">
-                    <img src="logo-2.png" alt="Christine & Jay Wedding Logo" class="hero-logo-img">
+                    <img src="logo-2.png" alt="Christine & Jay Wedding Logo" class="hero-logo-img" fetchpriority="high" loading="eager">
                 </div>
                 <h1 class="hero-names">
                     <span class="hero-name-line">Christine</span>
@@ -791,6 +802,75 @@
         </div>
     </section>
 
+    <!-- Video Sections -->
+    <section class="section video-section">
+        <div class="container">
+            <header class="video-section-header">
+                <h2 class="video-section-title">Proposal Video</h2>
+                <p class="video-section-subtitle">Our special moment captured forever</p>
+            </header>
+            <div class="video-grid">
+                <div class="video-card-wrapper">
+                    <div class="video-card" id="proposal-video-card">
+                        <video 
+                            class="video-player" 
+                            poster="public/proposal-1.jpg"
+                            onclick="toggleVideoPlay('proposal')"
+                            id="proposal-video"
+                            preload="metadata"
+                        >
+                            <source src="Proposal Video/FDownloader.Net_AQNF3FJ8wmScX3VY7HRIwjxU231BeG13Jm8A2lU4RYjvyJKbd8pFwT2YVCzTVhazp97bmrP3wjUq5Yfyti3Vp6RFryYKAPvqJJfaAYb9EGfghQ_720p_(HD).mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-overlay" id="proposal-overlay" onclick="playVideo('proposal')">
+                            <div class="video-info">
+                                <h3 class="video-title">The Proposal</h3>
+                                <p class="video-caption">The moment we said yes to forever</p>
+                            </div>
+                            <div class="video-play-button">
+                                <span class="play-icon">▶</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section video-section">
+        <div class="container">
+            <header class="video-section-header">
+                <h2 class="video-section-title">Pre-Nup Video</h2>
+                <p class="video-section-subtitle">Beautiful moments before the big day</p>
+            </header>
+            <div class="video-grid">
+                <div class="video-card-wrapper">
+                    <div class="video-card" id="prenup-video-card">
+                        <video 
+                            class="video-player" 
+                            poster="Prenup Photos/LYD_3210.jpg"
+                            onclick="toggleVideoPlay('prenup')"
+                            id="prenup-video"
+                            preload="metadata"
+                        >
+                            <source src="Prenup Video/JAY & CHING PRENUP VIDEO.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-overlay" id="prenup-overlay" onclick="playVideo('prenup')">
+                            <div class="video-info">
+                                <h3 class="video-title">Pre-Nup Session</h3>
+                                <p class="video-caption">Capturing our love story</p>
+                            </div>
+                            <div class="video-play-button">
+                                <span class="play-icon">▶</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Principal Sponsors Section -->
     <section class="section sponsors-section">
         <div class="container">
@@ -903,6 +983,127 @@
                     <h3>Candle</h3>
                     <p class="sponsor-name">Mary Jane Sortejas</p>
                     <p class="sponsor-name">Levi Beltran</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offertory and Bearers Section -->
+    <section class="section offertory-bearers-section">
+        <div class="container">
+            <h2 class="section-title" data-animate>Offertory & Bearers</h2>
+            
+            <!-- Bearers -->
+            <div class="offertory-category" data-animate>
+                <h3 class="category-title">
+                    <i class="fas fa-gift"></i>
+                    Bearers
+                </h3>
+                <div class="bearers-grid">
+                    <div class="bearer-card glass-card">
+                        <div class="bearer-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>Bible</h4>
+                        <p class="bearer-name">Asher Samuel Beltran</p>
+                    </div>
+                    <div class="bearer-card glass-card">
+                        <div class="bearer-icon">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                        <h4>Ring Bearer</h4>
+                        <p class="bearer-name">Arvis Ezio Bentinganan</p>
+                    </div>
+                    <div class="bearer-card glass-card">
+                        <div class="bearer-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4>Coin Bearer</h4>
+                        <p class="bearer-name">Franz Ely Pimienta</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flower Girls -->
+            <div class="offertory-category" data-animate>
+                <h3 class="category-title">
+                    <i class="fas fa-spa"></i>
+                    Flower Girls
+                </h3>
+                <div class="flower-girls-grid">
+                    <div class="flower-girl-card glass-card">
+                        <p class="flower-girl-name">Cheska Jean Lawagan</p>
+                    </div>
+                    <div class="flower-girl-card glass-card">
+                        <p class="flower-girl-name">Francheska Maine Pimienta</p>
+                    </div>
+                    <div class="flower-girl-card glass-card">
+                        <p class="flower-girl-name">Alyana Mcxine Chua</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offertory -->
+            <div class="offertory-category" data-animate>
+                <h3 class="category-title">
+                    <i class="fas fa-hands-praying"></i>
+                    Offertory
+                </h3>
+                <div class="offertory-grid">
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">Jesalie Ringor -Pasiliao</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">Chelsea Joy Lawagan</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">Alpha Marcelino</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">Ma Rosella Marcelino</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">Elvy Estacio</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">Marvin Pasiliao</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">Mc Khallie Comia</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">John Russel Marcelino</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">David Beltran</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <p class="offertory-name">Arnel Zamoranos</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Readers -->
+            <div class="offertory-category" data-animate>
+                <h3 class="category-title">
+                    <i class="fas fa-book-open"></i>
+                    Readers
+                </h3>
+                <div class="readers-grid">
+                    <div class="reader-card glass-card">
+                        <div class="reader-icon">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <h4>1st Reading, Responsorial Psalm</h4>
+                        <p class="reader-name">Edison Go</p>
+                    </div>
+                    <div class="reader-card glass-card">
+                        <div class="reader-icon">
+                            <i class="fas fa-pray"></i>
+                        </div>
+                        <h4>2nd Reading, Prayers of the Faithful</h4>
+                        <p class="reader-name">Emmanuel Bentinganan</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1199,7 +1400,7 @@
                                     <i class="fas fa-user-tie"></i>
                                 </div>
                                 <h4 class="attire-info-heading">GENTLEMEN</h4>
-                                <p class="attire-info-text">Barong with black slacks</p>
+                                <p class="attire-info-text">Barong; trousers in <b>brown</b>, <b>cream</b>, <b>beige</b>, or <b>champagne</b>.</p>
                             </div>
 
                             <div class="attire-info-card">
@@ -1207,7 +1408,7 @@
                                     <i class="fas fa-female"></i>
                                 </div>
                                 <h4 class="attire-info-heading">LADIES</h4>
-                                <p class="attire-info-text">Long gowns and dresses</p>
+                                <p class="attire-info-text">Long gowns or dresses in <b>rose gold</b>, <b>pink</b>, or <b>champagne</b>.</p>
                             </div>
                         </div>
 
@@ -1217,17 +1418,18 @@
                                 <div class="color-group-inline">
                                     <p class="color-group-label">Groomsmen</p>
                                     <div class="color-swatches-inline">
-                                        <div class="color-swatch-small" style="background-color: #f5f5dc;" title="Beige"></div>
-                                        <div class="color-swatch-small" style="background-color: #ffffff; border: 1px solid #ddd;" title="White"></div>
-                                        <div class="color-swatch-small" style="background-color: #f7e7ce;" title="Champagne"></div>
+                                        <div class="color-swatch-small" style="background-color: #5C4A3F;" title="Brown" aria-label="Brown"></div>
+                                        <div class="color-swatch-small" style="background-color: #F5E9D7;" title="Cream" aria-label="Cream"></div>
+                                        <div class="color-swatch-small" style="background-color: #E8D3B0;" title="Beige" aria-label="Beige"></div>
+                                        <div class="color-swatch-small" style="background-color: #F1E0C5;" title="Champagne" aria-label="Champagne"></div>
                                     </div>
                                 </div>
                                 <div class="color-group-inline">
                                     <p class="color-group-label">Bridesmaids</p>
                                     <div class="color-swatches-inline">
-                                        <div class="color-swatch-small" style="background-color: #e8b4b8;" title="Rose Gold"></div>
-                                        <div class="color-swatch-small" style="background-color: #f6e1e5;" title="Blush"></div>
-                                        <div class="color-swatch-small" style="background-color: #d4989c;" title="Dusty Rose"></div>
+                                        <div class="color-swatch-small" style="background-color: #C48F96;" title="Rose Gold" aria-label="Rose Gold"></div>
+                                        <div class="color-swatch-small" style="background-color: #F6C1C7;" title="Pink" aria-label="Pink"></div>
+                                        <div class="color-swatch-small" style="background-color: #F1E0C5;" title="Champagne" aria-label="Champagne"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1300,6 +1502,80 @@
         </div>
     </section>
 
+    <!-- Special Thanks To Section -->
+    <section class="section special-thanks-section">
+        <div class="container">
+            <h2 class="section-title" data-animate>Special Thanks To</h2>
+            <p class="section-subtitle" data-animate>We are grateful for your support and partnership</p>
+            <div class="thanks-gallery-container">
+                <div class="thanks-gallery-track">
+                    <!-- First set of logos -->
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/MMS.png" alt="MMS" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/C-Medica Pharmacy.png" alt="C-Medica Pharmacy" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/COOTCO.png" alt="COOTCO" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/City Lights.png" alt="City Lights" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/Even After.png" alt="Even After" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/SG.png" alt="SG" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/Mackan.png" alt="Mackan" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/518128732_1196846082456610_5864555264600346350_n.jpg" alt="Special Thanks" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/484559910_1394544808629844_379516007258427707_n.jpg" alt="Special Thanks" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/475830321_1187548926713809_1838727543148466778_n.jpg" alt="Special Thanks" loading="lazy">
+                    </div>
+                    <!-- Duplicated set for seamless loop -->
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/MMS.png" alt="MMS" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/C-Medica Pharmacy.png" alt="C-Medica Pharmacy" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/COOTCO.png" alt="COOTCO" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/City Lights.png" alt="City Lights" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/Even After.png" alt="Even After" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/SG.png" alt="SG" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/Mackan.png" alt="Mackan" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/518128732_1196846082456610_5864555264600346350_n.jpg" alt="Special Thanks" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/484559910_1394544808629844_379516007258427707_n.jpg" alt="Special Thanks" loading="lazy">
+                    </div>
+                    <div class="thanks-logo-card">
+                        <img src="Thanks To/475830321_1187548926713809_1838727543148466778_n.jpg" alt="Special Thanks" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1345,7 +1621,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
 

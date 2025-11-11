@@ -46,91 +46,114 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ==========================================
-// SCROLL ANIMATIONS
+// SCROLL ANIMATIONS (OPTIMIZED)
 // ==========================================
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.05,
+    rootMargin: '50px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animated');
+            // Unobserve after animation to improve performance
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
 // Observe all elements with data-animate attribute
-document.querySelectorAll('[data-animate]').forEach(el => {
-    observer.observe(el);
-});
+if ('IntersectionObserver' in window) {
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        observer.observe(el);
+    });
+} else {
+    // Fallback for browsers without IntersectionObserver
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        el.classList.add('animated');
+    });
+}
 
 // ==========================================
-// NAVIGATION BACKGROUND ON SCROLL
+// NAVIGATION BACKGROUND ON SCROLL (OPTIMIZED)
 // ==========================================
 const nav = document.querySelector('.nav-glass');
 
+// Throttle function for performance
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
 // Check initial scroll position
 function updateNavbar() {
+    if (!nav) return;
     const currentScroll = window.pageYOffset;
     
     if (currentScroll > 50) {
-        // Scrolled down - solid background with dark text
         nav.classList.add('scrolled');
     } else {
-        // At top - transparent with white text
         nav.classList.remove('scrolled');
     }
 }
 
-// Update on scroll
-window.addEventListener('scroll', updateNavbar);
+// Update on scroll with throttling
+const throttledUpdateNavbar = throttle(updateNavbar, 16); // ~60fps
+window.addEventListener('scroll', throttledUpdateNavbar, { passive: true });
 
 // Update on page load
 updateNavbar();
 
 // ==========================================
-// PARALLAX EFFECT FOR HERO SECTION
+// PARALLAX EFFECT FOR HERO SECTION (OPTIMIZED)
 // ==========================================
-window.addEventListener('scroll', () => {
+let lastScrollY = 0;
+let ticking = false;
+
+function updateParallax() {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero-content');
-    const glitters = document.querySelectorAll('.glitter');
     
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - (scrolled / 600);
+    if (hero && Math.abs(scrolled - lastScrollY) > 5) {
+        // Only update if scroll difference is significant
+        const opacity = Math.max(0, 1 - (scrolled / 600));
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+        hero.style.opacity = opacity;
+        lastScrollY = scrolled;
     }
     
-    glitters.forEach((glitter, index) => {
-        glitter.style.transform = `translateY(${scrolled * (0.3 + index * 0.1)}px)`;
-    });
-});
+    ticking = false;
+}
+
+function requestParallaxTick() {
+    if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+    }
+}
+
+window.addEventListener('scroll', requestParallaxTick, { passive: true });
 
 // ==========================================
-// CARD FLIP EFFECT ON HOVER
+// CARD FLIP EFFECT ON HOVER (OPTIMIZED)
 // ==========================================
-document.querySelectorAll('.glass-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) rotateX(3deg)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) rotateX(0)';
-    });
-});
+// Use CSS transitions instead of JavaScript for better performance
+// Cards will use CSS :hover pseudo-class for transforms
 
 // ==========================================
-// LOADING ANIMATION
+// LOADING ANIMATION (OPTIMIZED)
 // ==========================================
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-});
+// Removed blocking opacity animation for faster initial render
+// Content is visible immediately for better perceived performance
 
 // ==========================================
 // VIDEO PLAYBACK FUNCTIONALITY
@@ -155,13 +178,21 @@ function playVideo() {
 
 // Hero video code removed - using image background instead
 
-// Initialize components when page loads
+// Initialize components when page loads (OPTIMIZED)
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize folder tiles
-    setTimeout(initFolderTiles, 1000);
-    
-    // Initialize moving galleries
-    setTimeout(initMovingGalleries, 1500);
+    // Use requestIdleCallback for non-critical initialization
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+            initFolderTiles();
+            initMovingGalleries();
+        }, { timeout: 2000 });
+    } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(() => {
+            initFolderTiles();
+            initMovingGalleries();
+        }, 1000);
+    }
 });
 
 // ==========================================
@@ -215,40 +246,43 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 // ==========================================
-// GLITTER CURSOR EFFECT (Optional Enhancement)
+// GLITTER CURSOR EFFECT (DISABLED FOR PERFORMANCE)
 // ==========================================
-let glitterTimeout;
+// Disabled to improve performance - can be re-enabled if needed
+// let glitterTimeout;
+// let glitterCount = 0;
+// const MAX_GLITTERS = 5; // Limit concurrent glitters
 
-document.addEventListener('mousemove', (e) => {
-    clearTimeout(glitterTimeout);
-    
-    glitterTimeout = setTimeout(() => {
-        const glitter = document.createElement('div');
-        glitter.className = 'cursor-glitter';
-        glitter.style.left = e.pageX + 'px';
-        glitter.style.top = e.pageY + 'px';
-        
-        const colors = ['#e8b4b8', '#d4af37', '#f4d03f'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        glitter.style.cssText = `
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: ${randomColor};
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            animation: glitterFade 1s ease-out forwards;
-        `;
-        
-        document.body.appendChild(glitter);
-        
-        setTimeout(() => {
-            glitter.remove();
-        }, 1000);
-    }, 50);
-});
+// document.addEventListener('mousemove', throttle((e) => {
+//     if (glitterCount >= MAX_GLITTERS) return;
+//     
+//     clearTimeout(glitterTimeout);
+//     
+//     glitterTimeout = setTimeout(() => {
+//         const glitter = document.createElement('div');
+//         glitter.className = 'cursor-glitter';
+//         glitter.style.cssText = `
+//             position: fixed;
+//             left: ${e.clientX}px;
+//             top: ${e.clientY}px;
+//             width: 5px;
+//             height: 5px;
+//             background: #e8b4b8;
+//             border-radius: 50%;
+//             pointer-events: none;
+//             z-index: 9999;
+//             animation: glitterFade 1s ease-out forwards;
+//         `;
+//         
+//         document.body.appendChild(glitter);
+//         glitterCount++;
+//         
+//         setTimeout(() => {
+//             glitter.remove();
+//             glitterCount--;
+//         }, 1000);
+//     }, 100);
+// }, 100));
 
 // Add glitter animation CSS dynamically
 const style = document.createElement('style');
@@ -267,10 +301,12 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ==========================================
-// ACTIVE NAVIGATION LINK
+// ACTIVE NAVIGATION LINK (OPTIMIZED)
 // ==========================================
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
+
+let highlightTicking = false;
 
 function highlightNavigation() {
     const scrollY = window.pageYOffset;
@@ -289,13 +325,39 @@ function highlightNavigation() {
             });
         }
     });
+    
+    highlightTicking = false;
 }
 
-window.addEventListener('scroll', highlightNavigation);
+function requestHighlightTick() {
+    if (!highlightTicking) {
+        window.requestAnimationFrame(highlightNavigation);
+        highlightTicking = true;
+    }
+}
+
+window.addEventListener('scroll', requestHighlightTick, { passive: true });
 
 // ==========================================
-// GLASS CARD TILT EFFECT
+// GLASS CARD TILT EFFECT (OPTIMIZED)
 // ==========================================
+let tiltTicking = false;
+
+function updateTilt(card, e) {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 100;
+    const rotateY = (centerX - x) / 100;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    tiltTicking = false;
+}
+
 document.querySelectorAll('.glass-card').forEach(card => {
     // Skip tilt effect for RSVP form
     if (card.classList.contains('rsvp-form')) {
@@ -303,18 +365,11 @@ document.querySelectorAll('.glass-card').forEach(card => {
     }
     
     card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 100;
-        const rotateY = (centerX - x) / 100;
-        
-        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-    });
+        if (!tiltTicking) {
+            window.requestAnimationFrame(() => updateTilt(this, e));
+            tiltTicking = true;
+        }
+    }, { passive: true });
     
     card.addEventListener('mouseleave', function() {
         this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
@@ -1014,6 +1069,65 @@ function clearFormMessages() {
     document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
     document.querySelectorAll('.form-input').forEach(el => el.classList.remove('error'));
 }
+
+// ==========================================
+// VIDEO PLAYBACK FUNCTIONALITY (INLINE)
+// ==========================================
+function playVideo(videoType) {
+    const video = document.getElementById(`${videoType}-video`);
+    const overlay = document.getElementById(`${videoType}-overlay`);
+    
+    if (!video || !overlay) return;
+    
+    // Hide overlay
+    overlay.style.display = 'none';
+    
+    // Play video
+    video.controls = true;
+    video.play().catch(error => {
+        console.log('Video autoplay prevented:', error);
+        // If autoplay fails, show controls for manual play
+        video.controls = true;
+    });
+}
+
+function toggleVideoPlay(videoType) {
+    const video = document.getElementById(`${videoType}-video`);
+    if (!video) return;
+    
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
+}
+
+// Hide overlay when video starts playing
+document.addEventListener('DOMContentLoaded', function() {
+    const videos = ['proposal', 'prenup'];
+    
+    videos.forEach(videoType => {
+        const video = document.getElementById(`${videoType}-video`);
+        const overlay = document.getElementById(`${videoType}-overlay`);
+        
+        if (video && overlay) {
+            video.addEventListener('play', function() {
+                overlay.style.display = 'none';
+            });
+            
+            video.addEventListener('pause', function() {
+                // Optionally show overlay again when paused
+                // overlay.style.display = 'flex';
+            });
+            
+            video.addEventListener('ended', function() {
+                // Show overlay again when video ends
+                overlay.style.display = 'flex';
+                video.controls = false;
+            });
+        }
+    });
+});
 
 console.log('🎉 Wedding Website Loaded Successfully!');
 console.log('Christine Joyce & Jay - January 22, 2026 ❤️');

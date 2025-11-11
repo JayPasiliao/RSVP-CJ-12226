@@ -5,6 +5,9 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  // Next.js 16+ optimizations
+  reactStrictMode: true,
+  swcMinify: true,
 }
 
 module.exports = nextConfig
