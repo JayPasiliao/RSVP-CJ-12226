@@ -689,17 +689,17 @@ const photoData = {
         { src: 'proposal-7.jpg', title: 'Love Story', description: 'A new chapter in their love story' }
     ],
     prenup: [
-        { src: 'prenup-1.jpg', title: 'Pre-Nuptial Session', description: 'Capturing their love before the big day' },
-        { src: 'prenup-2.jpg', title: 'Romantic Moments', description: 'Sweet moments between the couple' },
-        { src: 'prenup-3.jpg', title: 'Elegant Poses', description: 'Beautiful poses showcasing their love' },
-        { src: 'prenup-4.jpg', title: 'Natural Beauty', description: 'Natural and candid moments' },
-        { src: 'prenup-5.jpg', title: 'Love in Motion', description: 'Dynamic shots of their relationship' },
-        { src: 'prenup-6.jpg', title: 'Perfect Match', description: 'Two souls perfectly matched' }
+        { src: 'Prenup Photos/LYD_2376.jpg', title: 'Pre-Nuptial Session', description: 'Capturing their love before the big day' },
+        { src: 'Prenup Photos/LYD_2644.jpg', title: 'Romantic Moments', description: 'Sweet moments between the couple' },
+        { src: 'Prenup Photos/LYD_3210.jpg', title: 'Elegant Poses', description: 'Beautiful poses showcasing their love' },
+        { src: 'Prenup Photos/LYD_3476.jpg', title: 'Natural Beauty', description: 'Natural and candid moments' },
+        { src: 'Prenup Photos/LYD_3638.jpg', title: 'Love in Motion', description: 'Dynamic shots of their relationship' },
+        { src: 'Prenup Photos/LYD_3796.jpg', title: 'Perfect Match', description: 'Two souls perfectly matched' }
     ],
     highlights: [
-        { src: 'highlight-1.jpg', title: 'Special Moments', description: 'Cherished memories from their journey' },
-        { src: 'highlight-2.jpg', title: 'Love Story', description: 'The beautiful story of Christine and Jay' },
-        { src: 'highlight-3.jpg', title: 'Forever Together', description: 'Moments that will last forever' }
+        { src: 'proposal-1.jpg', title: 'Special Moments', description: 'Cherished memories from their journey' },
+        { src: 'proposal-4.jpg', title: 'Love Story', description: 'The beautiful story of Christine and Jay' },
+        { src: 'proposal-7.jpg', title: 'Forever Together', description: 'Moments that will last forever' }
     ]
 };
 
