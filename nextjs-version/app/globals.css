@@ -444,7 +444,7 @@ body {
     text-align: center;
     padding: 3rem 2rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .detail-card::before {
@@ -455,6 +455,50 @@ body {
     right: 0;
     height: 4px;
     background: linear-gradient(90deg, transparent, var(--rose-gold), var(--gold), transparent);
+    z-index: 1;
+}
+
+/* Rotating border animation */
+.detail-card::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 23px;
+    background: conic-gradient(
+        from 0deg,
+        rgba(232, 180, 184, 0.6),
+        rgba(212, 175, 55, 0.6),
+        rgba(232, 180, 184, 0.6),
+        rgba(212, 175, 55, 0.6),
+        rgba(232, 180, 184, 0.6)
+    );
+    animation: rotateBorder 5s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes rotateBorder {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.detail-card:hover::after {
+    background: conic-gradient(
+        from 0deg,
+        rgba(232, 180, 184, 1),
+        rgba(212, 175, 55, 1),
+        rgba(232, 180, 184, 1),
+        rgba(212, 175, 55, 1),
+        rgba(232, 180, 184, 1)
+    );
+    animation-duration: 3s;
 }
 
 .card-icon {
@@ -786,7 +830,64 @@ body {
 .gallery-image-placeholder p {
     color: var(--gray);
     font-size: 1rem;
+}
+
+/* ==========================================
+   GALLERY FILTERS & PILLS
+   ========================================== */
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.gallery-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.gallery-subtitle {
+    color: var(--gray);
+    opacity: 0.7;
+    font-size: 1.1rem;
+}
+
+.filter-pill {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
     font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    background: rgba(255, 240, 245, 0.8);
+    color: var(--dark);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filter-pill:hover {
+    background: rgba(232, 180, 184, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.filter-pill.active {
+    background: #c67b7f;
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(198, 123, 127, 0.3);
 }
 
 .gallery-item.hidden {

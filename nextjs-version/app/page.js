@@ -2,8 +2,13 @@
 
 import { useEffect } from 'react'
 import Script from 'next/script'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import VideoSection from './components/VideoSection'
 
 export default function WeddingPage() {
+  const router = useRouter()
+  
   useEffect(() => {
     // Initialize animations and interactions after component mounts
     if (typeof window !== 'undefined') {
@@ -52,7 +57,7 @@ export default function WeddingPage() {
           <ul className="nav-menu">
             <li><a href="#home" className="nav-link">Home</a></li>
             <li><a href="#details" className="nav-link">Details</a></li>
-            <li><a href="#gallery" className="nav-link">Gallery</a></li>
+            <li><a href="/gallery/all" className="nav-link">Gallery</a></li>
             <li><a href="#bridal-party" className="nav-link">Bridal Party</a></li>
             <li><a href="#location" className="nav-link">Location</a></li>
             <li><a href="#rsvp" className="nav-link">RSVP</a></li>
@@ -70,10 +75,6 @@ export default function WeddingPage() {
         <div className="hero-content">
           <div className="hero-logo-container fade-in">
             <img src="/logo-2.png" alt="Christine & Jay Wedding Logo" className="hero-logo-image" />
-          </div>
-          <div className="hero-cta">
-            <a href="#details" className="btn-primary">View Details</a>
-            <a href="#rsvp" className="btn-secondary">RSVP</a>
           </div>
         </div>
       </section>
@@ -110,6 +111,69 @@ export default function WeddingPage() {
               <p className="detail-venue">Citylight Hotel</p>
               <p className="detail-location">245 Gen. Luna Rd, Baguio, 2600 Benguet</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Sections */}
+      <VideoSection
+        heading="Proposal Video"
+        subheading="Our special moment captured forever"
+        items={[
+          {
+            title: "The Proposal",
+            caption: "The moment we said yes to forever",
+            poster: "/proposal-1.jpg",
+            src: "/Proposal Video/FDownloader.Net_AQNF3FJ8wmScX3VY7HRIwjxU231BeG13Jm8A2lU4RYjvyJKbd8pFwT2YVCzTVhazp97bmrP3wjUq5Yfyti3Vp6RFryYKAPvqJJfaAYb9EGfghQ_720p_(HD).mp4"
+          }
+        ]}
+      />
+
+      <VideoSection
+        heading="Pre-Nup Video"
+        subheading="Beautiful moments before the big day"
+        items={[
+          {
+            title: "Pre-Nup Session",
+            caption: "Capturing our love story",
+            poster: "/Prenup Photos/LYD_3210.jpg",
+            src: "/Prenup Video/JAY & CHING PRENUP VIDEO.mp4"
+          }
+        ]}
+      />
+
+      {/* Gallery Section with Tabs */}
+      <section id="gallery" className="section gallery-section">
+        <div className="container">
+          <header className="gallery-header">
+            <h2 className="gallery-title" data-animate="">Our Love Story</h2>
+            <p className="gallery-subtitle" data-animate="">Cherished moments from our journey together</p>
+          </header>
+          <div className="gallery-filters" data-animate="">
+            <a 
+              href="/gallery/all/" 
+              className="filter-pill"
+              onClick={(e) => { e.preventDefault(); router.push('/gallery/all/'); }}
+            >
+              All
+            </a>
+            <a 
+              href="/gallery/proposal/" 
+              className="filter-pill"
+              onClick={(e) => { e.preventDefault(); router.push('/gallery/proposal/'); }}
+            >
+              Proposal
+            </a>
+            <a 
+              href="/gallery/prenup/" 
+              className="filter-pill"
+              onClick={(e) => { e.preventDefault(); router.push('/gallery/prenup/'); }}
+            >
+              Pre-Nup
+            </a>
+          </div>
+          <div className="mt-8 text-center">
+            <p className="text-gray-600">Click on any tab above to view the full gallery</p>
           </div>
         </div>
       </section>

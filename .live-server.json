@@ -1,0 +1,20 @@
+{
+  "watch": ["index.html", "styles.css", "script.js", "*.png", "*.jpg", "*.jpeg"],
+  "ignore": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/Prenup Photos for upload/**",
+    "**/Prenup Video/**",
+    "**/Proposal Video/**",
+    "**/Thanks To/**",
+    "**/nextjs-version/**",
+    "**/public/**",
+    "**/AppData/**",
+    "**/*.md",
+    "**/*.txt",
+    "**/*.gs"
+  ]
+}
+
+
+

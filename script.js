@@ -1,4 +1,35 @@
 // ==========================================
+// THEME TOGGLE - LIGHT/DARK MODE
+// ==========================================
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const icon = themeToggle.querySelector('i');
+
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+}
+
+// Toggle theme
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    // Update icon
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// ==========================================
 // SMOOTH SCROLLING
 // ==========================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -15,148 +46,243 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ==========================================
-// SCROLL ANIMATIONS
+// SCROLL ANIMATIONS (OPTIMIZED)
 // ==========================================
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.05,
+    rootMargin: '50px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animated');
+            // Unobserve after animation to improve performance
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
 // Observe all elements with data-animate attribute
-document.querySelectorAll('[data-animate]').forEach(el => {
-    observer.observe(el);
-});
+if ('IntersectionObserver' in window) {
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        observer.observe(el);
+    });
+} else {
+    // Fallback for browsers without IntersectionObserver
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        el.classList.add('animated');
+    });
+}
 
 // ==========================================
-// NAVIGATION BACKGROUND ON SCROLL
+// NAVIGATION BACKGROUND ON SCROLL (OPTIMIZED)
 // ==========================================
-let lastScroll = 0;
 const nav = document.querySelector('.nav-glass');
 
-window.addEventListener('scroll', () => {
+// Throttle function for performance
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Check initial scroll position
+function updateNavbar() {
+    if (!nav) return;
     const currentScroll = window.pageYOffset;
     
-    if (currentScroll > 100) {
-        nav.style.background = 'rgba(255, 255, 255, 0.95)';
-        nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+    if (currentScroll > 50) {
+        nav.classList.add('scrolled');
     } else {
-        nav.style.background = 'rgba(255, 255, 255, 0.7)';
-        nav.style.boxShadow = 'none';
+        nav.classList.remove('scrolled');
     }
-    
-    lastScroll = currentScroll;
-});
+}
+
+// Update on scroll with throttling
+const throttledUpdateNavbar = throttle(updateNavbar, 16); // ~60fps
+window.addEventListener('scroll', throttledUpdateNavbar, { passive: true });
+
+// Update on page load
+updateNavbar();
 
 // ==========================================
-// PARALLAX EFFECT FOR HERO SECTION
+// PARALLAX EFFECT FOR HERO SECTION (OPTIMIZED)
 // ==========================================
-window.addEventListener('scroll', () => {
+let lastScrollY = 0;
+let ticking = false;
+
+function updateParallax() {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero-content');
-    const glitters = document.querySelectorAll('.glitter');
     
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - (scrolled / 600);
+    if (hero && Math.abs(scrolled - lastScrollY) > 5) {
+        // Only update if scroll difference is significant
+        const opacity = Math.max(0, 1 - (scrolled / 600));
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+        hero.style.opacity = opacity;
+        lastScrollY = scrolled;
     }
     
-    glitters.forEach((glitter, index) => {
-        glitter.style.transform = `translateY(${scrolled * (0.3 + index * 0.1)}px)`;
-    });
-});
+    ticking = false;
+}
+
+function requestParallaxTick() {
+    if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+    }
+}
+
+window.addEventListener('scroll', requestParallaxTick, { passive: true });
 
 // ==========================================
-// CARD FLIP EFFECT ON HOVER
+// CARD FLIP EFFECT ON HOVER (OPTIMIZED)
 // ==========================================
-document.querySelectorAll('.glass-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) rotateX(5deg)';
-    });
+// Use CSS transitions instead of JavaScript for better performance
+// Cards will use CSS :hover pseudo-class for transforms
+
+// ==========================================
+// LOADING ANIMATION (OPTIMIZED)
+// ==========================================
+// Removed blocking opacity animation for faster initial render
+// Content is visible immediately for better perceived performance
+
+// ==========================================
+// VIDEO PLAYBACK FUNCTIONALITY
+// ==========================================
+function playVideo() {
+    const video = document.getElementById('sampleVideo');
+    const playButton = document.querySelector('.video-play-button');
     
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) rotateX(0)';
-    });
+    if (video && playButton) {
+        // Enable controls and play video
+        video.controls = true;
+        video.play().catch(error => {
+            console.log('Video autoplay prevented:', error);
+            // If autoplay fails, show controls for manual play
+            video.controls = true;
+        });
+        
+        // Hide play button overlay
+        playButton.classList.add('hidden');
+    }
+}
+
+// Hero video code removed - using image background instead
+
+// Initialize components when page loads (OPTIMIZED)
+document.addEventListener('DOMContentLoaded', function() {
+    // Use requestIdleCallback for non-critical initialization
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+            initFolderTiles();
+            initMovingGalleries();
+        }, { timeout: 2000 });
+    } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(() => {
+            initFolderTiles();
+            initMovingGalleries();
+        }, 1000);
+    }
 });
 
 // ==========================================
-// LOADING ANIMATION
-// ==========================================
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
-// ==========================================
-// COUNTDOWN TIMER (Optional)
+// COUNTDOWN TIMER
 // ==========================================
 function updateCountdown() {
     const weddingDate = new Date('2026-01-22T14:00:00').getTime();
     const now = new Date().getTime();
     const distance = weddingDate - now;
     
+    if (distance < 0) {
+        // Wedding day has passed
+        document.getElementById('days').textContent = '000';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        
+        // Update countdown title
+        const countdownTitle = document.querySelector('.countdown-title');
+        if (countdownTitle) {
+            countdownTitle.textContent = 'Just Married! 💕';
+        }
+        return;
+    }
+    
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-    // You can add a countdown display element in HTML if desired
-    // document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    // Update countdown display with proper formatting
+    document.getElementById('days').textContent = days.toString().padStart(3, '0');
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
     
-    if (distance < 0) {
-        // Wedding day has passed
-        // document.getElementById('countdown').innerHTML = "Just Married!";
-    }
+    // Add animation effect when numbers change
+    const countdownNumbers = document.querySelectorAll('.countdown-number');
+    countdownNumbers.forEach(number => {
+        number.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            number.style.transform = 'scale(1)';
+        }, 200);
+    });
 }
+
+// Initialize countdown immediately
+updateCountdown();
 
 // Update countdown every second
 setInterval(updateCountdown, 1000);
 
 // ==========================================
-// GLITTER CURSOR EFFECT (Optional Enhancement)
+// GLITTER CURSOR EFFECT (DISABLED FOR PERFORMANCE)
 // ==========================================
-let glitterTimeout;
+// Disabled to improve performance - can be re-enabled if needed
+// let glitterTimeout;
+// let glitterCount = 0;
+// const MAX_GLITTERS = 5; // Limit concurrent glitters
 
-document.addEventListener('mousemove', (e) => {
-    clearTimeout(glitterTimeout);
-    
-    glitterTimeout = setTimeout(() => {
-        const glitter = document.createElement('div');
-        glitter.className = 'cursor-glitter';
-        glitter.style.left = e.pageX + 'px';
-        glitter.style.top = e.pageY + 'px';
-        
-        const colors = ['#e8b4b8', '#d4af37', '#f4d03f'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        glitter.style.cssText = `
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: ${randomColor};
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            animation: glitterFade 1s ease-out forwards;
-        `;
-        
-        document.body.appendChild(glitter);
-        
-        setTimeout(() => {
-            glitter.remove();
-        }, 1000);
-    }, 50);
-});
+// document.addEventListener('mousemove', throttle((e) => {
+//     if (glitterCount >= MAX_GLITTERS) return;
+//     
+//     clearTimeout(glitterTimeout);
+//     
+//     glitterTimeout = setTimeout(() => {
+//         const glitter = document.createElement('div');
+//         glitter.className = 'cursor-glitter';
+//         glitter.style.cssText = `
+//             position: fixed;
+//             left: ${e.clientX}px;
+//             top: ${e.clientY}px;
+//             width: 5px;
+//             height: 5px;
+//             background: #e8b4b8;
+//             border-radius: 50%;
+//             pointer-events: none;
+//             z-index: 9999;
+//             animation: glitterFade 1s ease-out forwards;
+//         `;
+//         
+//         document.body.appendChild(glitter);
+//         glitterCount++;
+//         
+//         setTimeout(() => {
+//             glitter.remove();
+//             glitterCount--;
+//         }, 1000);
+//     }, 100);
+// }, 100));
 
 // Add glitter animation CSS dynamically
 const style = document.createElement('style');
@@ -175,10 +301,12 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ==========================================
-// ACTIVE NAVIGATION LINK
+// ACTIVE NAVIGATION LINK (OPTIMIZED)
 // ==========================================
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
+
+let highlightTicking = false;
 
 function highlightNavigation() {
     const scrollY = window.pageYOffset;
@@ -197,13 +325,39 @@ function highlightNavigation() {
             });
         }
     });
+    
+    highlightTicking = false;
 }
 
-window.addEventListener('scroll', highlightNavigation);
+function requestHighlightTick() {
+    if (!highlightTicking) {
+        window.requestAnimationFrame(highlightNavigation);
+        highlightTicking = true;
+    }
+}
+
+window.addEventListener('scroll', requestHighlightTick, { passive: true });
 
 // ==========================================
-// GLASS CARD TILT EFFECT
+// GLASS CARD TILT EFFECT (OPTIMIZED)
 // ==========================================
+let tiltTicking = false;
+
+function updateTilt(card, e) {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 100;
+    const rotateY = (centerX - x) / 100;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    tiltTicking = false;
+}
+
 document.querySelectorAll('.glass-card').forEach(card => {
     // Skip tilt effect for RSVP form
     if (card.classList.contains('rsvp-form')) {
@@ -211,18 +365,11 @@ document.querySelectorAll('.glass-card').forEach(card => {
     }
     
     card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-    });
+        if (!tiltTicking) {
+            window.requestAnimationFrame(() => updateTilt(this, e));
+            tiltTicking = true;
+        }
+    }, { passive: true });
     
     card.addEventListener('mouseleave', function() {
         this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
@@ -309,10 +456,10 @@ document.querySelectorAll('.map-container').forEach(map => {
 });
 
 // ==========================================
-// GALLERY FILTERING
+// GALLERY FILTERING - ALBUM STYLE
 // ==========================================
 const galleryTabs = document.querySelectorAll('.gallery-tab');
-const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryAlbums = document.querySelectorAll('.gallery-album');
 
 galleryTabs.forEach(tab => {
     tab.addEventListener('click', function() {
@@ -325,30 +472,335 @@ galleryTabs.forEach(tab => {
         // Get the category
         const category = this.getAttribute('data-category');
         
-        // Filter gallery items
-        galleryItems.forEach(item => {
-            const itemCategory = item.getAttribute('data-category');
+        // Filter gallery albums with smooth animation
+        galleryAlbums.forEach(album => {
+            const albumCategory = album.getAttribute('data-category');
             
-            if (category === 'all' || itemCategory === category) {
-                item.style.display = 'block';
+            if (category === 'all' || albumCategory === category) {
+                // Show album
+                album.style.display = 'block';
+                album.style.opacity = '0';
+                album.style.transform = 'translateY(30px) scale(0.9)';
+                
                 setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'scale(1)';
-                }, 10);
+                    album.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    album.style.opacity = '1';
+                    album.style.transform = 'translateY(0) scale(1)';
+                }, 50);
             } else {
-                item.style.opacity = '0';
-                item.style.transform = 'scale(0.8)';
+                // Hide album with animation
+                album.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                album.style.opacity = '0';
+                album.style.transform = 'translateY(-20px) scale(0.95)';
+                
                 setTimeout(() => {
-                    item.style.display = 'none';
-                }, 300);
+                    album.style.display = 'none';
+                }, 400);
             }
+        });
+        
+        // Add a subtle animation to the tab itself
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+    });
+});
+
+// Initialize gallery albums with transition
+galleryAlbums.forEach(album => {
+    album.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+});
+
+// Add click animation to tabs
+galleryTabs.forEach(tab => {
+    tab.style.transition = 'transform 0.2s ease';
+});
+
+// ==========================================
+// MOVING GALLERY INTERACTIONS
+// ==========================================
+function initMovingGalleries() {
+    const galleryTracks = document.querySelectorAll('.moving-gallery-track');
+    
+    galleryTracks.forEach(track => {
+        // Add click events to photo cards
+        const photoCards = track.querySelectorAll('.photo-card');
+        photoCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const title = this.querySelector('.photo-title');
+                
+                // Create photo data for modal
+                const photoData = {
+                    src: img.src,
+                    alt: img.alt,
+                    title: title.textContent,
+                    description: `${title.textContent} - Wedding Photo`
+                };
+                
+                // Open photo modal
+                openPhotoModal(photoData);
+                
+                // Add click animation
+                this.style.transform = 'translateY(-10px) scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+            
+            // Add hover pause effect
+            card.addEventListener('mouseenter', function() {
+                track.style.animationPlayState = 'paused';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                track.style.animationPlayState = 'running';
+            });
+        });
+        
+        // Add touch support for mobile
+        track.addEventListener('touchstart', function() {
+            this.style.animationPlayState = 'paused';
+        });
+        
+        track.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.style.animationPlayState = 'running';
+            }, 1000);
+        });
+    });
+}
+
+
+
+// ==========================================
+// FOLDER TILE INTERACTIONS
+// ==========================================
+function initFolderTiles() {
+    const folderTiles = document.querySelectorAll('.folder-tile');
+    
+    folderTiles.forEach((tile, index) => {
+        // Add staggered animation delay
+        tile.style.animationDelay = `${index * 0.1}s`;
+        
+        // Add click event for folder opening
+        tile.addEventListener('click', function(e) {
+            e.preventDefault();
+            openFolder(this);
+        });
+        
+        // Add hover effects
+        tile.addEventListener('mouseenter', function() {
+            this.style.animationPlayState = 'paused';
+        });
+        
+        tile.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('active')) {
+                this.style.animationPlayState = 'running';
+            }
+        });
+    });
+}
+
+function openFolder(folderTile) {
+    // Remove active class from all folders
+    document.querySelectorAll('.folder-tile').forEach(tile => {
+        tile.classList.remove('active');
+        tile.style.animationPlayState = 'running';
+    });
+    
+    // Add active class to clicked folder
+    folderTile.classList.add('active');
+    folderTile.style.animationPlayState = 'paused';
+    
+    // Get photo data
+    const photoNumber = folderTile.getAttribute('data-photo');
+    const image = folderTile.querySelector('.folder-image');
+    const label = folderTile.querySelector('.folder-label');
+    
+    // Create photo data for modal
+    const photoData = {
+        src: image.src,
+        alt: image.alt,
+        title: label.textContent,
+        description: `Proposal Photo ${photoNumber} - ${label.textContent}`
+    };
+    
+    // Open photo modal
+    openPhotoModal(photoData);
+    
+    // Add ripple effect
+    createRippleEffect(folderTile);
+}
+
+function createRippleEffect(element) {
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+        z-index: 1000;
+    `;
+    
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (rect.width / 2 - size / 2) + 'px';
+    ripple.style.top = (rect.height / 2 - size / 2) + 'px';
+    
+    element.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+// Add ripple animation CSS
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+// ==========================================
+// PHOTO MODAL FUNCTIONALITY
+// ==========================================
+let currentPhotoIndex = 0;
+let currentPhotos = [];
+
+// Photo data for each album
+const photoData = {
+    proposal: [
+        { src: 'proposal-1.jpg', title: 'The Proposal', description: 'A magical moment when Jay asked Christine to be his forever' },
+        { src: 'proposal-2.jpg', title: 'Ring Exchange', description: 'The beautiful ring that sealed their promise' },
+        { src: 'proposal-3.jpg', title: 'Joyful Tears', description: 'Tears of happiness and love' },
+        { src: 'proposal-4.jpg', title: 'First Kiss as Engaged', description: 'Their first kiss as an engaged couple' },
+        { src: 'proposal-5.jpg', title: 'Celebration', description: 'Celebrating with family and friends' },
+        { src: 'proposal-6.jpg', title: 'Together Forever', description: 'The beginning of their forever journey' },
+        { src: 'proposal-7.jpg', title: 'Love Story', description: 'A new chapter in their love story' }
+    ],
+    prenup: [
+        { src: 'prenup-1.jpg', title: 'Pre-Nuptial Session', description: 'Capturing their love before the big day' },
+        { src: 'prenup-2.jpg', title: 'Romantic Moments', description: 'Sweet moments between the couple' },
+        { src: 'prenup-3.jpg', title: 'Elegant Poses', description: 'Beautiful poses showcasing their love' },
+        { src: 'prenup-4.jpg', title: 'Natural Beauty', description: 'Natural and candid moments' },
+        { src: 'prenup-5.jpg', title: 'Love in Motion', description: 'Dynamic shots of their relationship' },
+        { src: 'prenup-6.jpg', title: 'Perfect Match', description: 'Two souls perfectly matched' }
+    ],
+    highlights: [
+        { src: 'highlight-1.jpg', title: 'Special Moments', description: 'Cherished memories from their journey' },
+        { src: 'highlight-2.jpg', title: 'Love Story', description: 'The beautiful story of Christine and Jay' },
+        { src: 'highlight-3.jpg', title: 'Forever Together', description: 'Moments that will last forever' }
+    ]
+};
+
+// Add click events to all photos
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click events to main images
+    document.querySelectorAll('.main-image').forEach((img, index) => {
+        img.addEventListener('click', function() {
+            const album = this.closest('.gallery-album');
+            const category = album.getAttribute('data-category');
+            openPhotoModal(category, 0);
+        });
+    });
+
+    // Add click events to thumbnails
+    document.querySelectorAll('.thumbnail').forEach((img, index) => {
+        img.addEventListener('click', function() {
+            const album = this.closest('.gallery-album');
+            const category = album.getAttribute('data-category');
+            const thumbnailIndex = Array.from(this.parentNode.children).indexOf(this);
+            openPhotoModal(category, thumbnailIndex + 1);
+        });
+    });
+
+    // Add click events to "more photos" indicators
+    document.querySelectorAll('.more-photos').forEach((element, index) => {
+        element.addEventListener('click', function() {
+            const album = this.closest('.gallery-album');
+            const category = album.getAttribute('data-category');
+            openPhotoModal(category, 3); // Start from the 4th photo
         });
     });
 });
 
-// Initialize gallery items with transition
-galleryItems.forEach(item => {
-    item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+function openPhotoModal(category, photoIndex) {
+    currentPhotos = photoData[category] || [];
+    currentPhotoIndex = photoIndex;
+    
+    if (currentPhotos.length === 0) return;
+    
+    const modal = document.getElementById('photoModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    
+    const photo = currentPhotos[currentPhotoIndex];
+    modalImage.src = photo.src;
+    modalImage.alt = photo.title;
+    modalTitle.textContent = photo.title;
+    modalDescription.textContent = photo.description;
+    
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePhotoModal() {
+    const modal = document.getElementById('photoModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+function nextPhoto() {
+    if (currentPhotos.length === 0) return;
+    currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
+    updateModalPhoto();
+}
+
+function previousPhoto() {
+    if (currentPhotos.length === 0) return;
+    currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
+    updateModalPhoto();
+}
+
+function updateModalPhoto() {
+    const photo = currentPhotos[currentPhotoIndex];
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    
+    modalImage.src = photo.src;
+    modalImage.alt = photo.title;
+    modalTitle.textContent = photo.title;
+    modalDescription.textContent = photo.description;
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('photoModal');
+    if (!modal.classList.contains('show')) return;
+    
+    switch(e.key) {
+        case 'Escape':
+            closePhotoModal();
+            break;
+        case 'ArrowLeft':
+            previousPhoto();
+            break;
+        case 'ArrowRight':
+            nextPhoto();
+            break;
+    }
 });
 
 // ==========================================
@@ -618,6 +1070,66 @@ function clearFormMessages() {
     document.querySelectorAll('.form-input').forEach(el => el.classList.remove('error'));
 }
 
+// ==========================================
+// VIDEO PLAYBACK FUNCTIONALITY (INLINE)
+// ==========================================
+function playVideo(videoType) {
+    const video = document.getElementById(`${videoType}-video`);
+    const overlay = document.getElementById(`${videoType}-overlay`);
+    
+    if (!video || !overlay) return;
+    
+    // Hide overlay
+    overlay.style.display = 'none';
+    
+    // Play video
+    video.controls = true;
+    video.play().catch(error => {
+        console.log('Video autoplay prevented:', error);
+        // If autoplay fails, show controls for manual play
+        video.controls = true;
+    });
+}
+
+function toggleVideoPlay(videoType) {
+    const video = document.getElementById(`${videoType}-video`);
+    if (!video) return;
+    
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
+}
+
+// Hide overlay when video starts playing
+document.addEventListener('DOMContentLoaded', function() {
+    const videos = ['proposal', 'prenup'];
+    
+    videos.forEach(videoType => {
+        const video = document.getElementById(`${videoType}-video`);
+        const overlay = document.getElementById(`${videoType}-overlay`);
+        
+        if (video && overlay) {
+            video.addEventListener('play', function() {
+                overlay.style.display = 'none';
+            });
+            
+            video.addEventListener('pause', function() {
+                // Optionally show overlay again when paused
+                // overlay.style.display = 'flex';
+            });
+            
+            video.addEventListener('ended', function() {
+                // Show overlay again when video ends
+                overlay.style.display = 'flex';
+                video.controls = false;
+            });
+        }
+    });
+});
+
 console.log('🎉 Wedding Website Loaded Successfully!');
 console.log('Christine Joyce & Jay - January 22, 2026 ❤️');
+
 
