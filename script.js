@@ -1,127 +1,179 @@
 // ==========================================
-// THEME TOGGLE - LIGHT/DARK MODE
+// INITIALIZE ALL FUNCTIONALITY AFTER DOM IS READY
 // ==========================================
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
-const icon = themeToggle.querySelector('i');
+'use strict';
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
-if (currentTheme === 'dark') {
-    body.classList.add('dark-mode');
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
+// Google Apps Script Web App URL - Connected to your Google Sheet
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtCS_qnXGzgESHs7JxovpnaVHZuDWr4LoXRiW3ePQRNk_Iqn56lxEAL4QfWyF_30HH/exec';
+// Target Sheet: https://docs.google.com/spreadsheets/d/1ClZ5TtSu3babJjR-yBmZb7YSTRdRFcgSCbY5aZZY0X4/edit
+
+// Prevent FOUC (Flash of Unstyled Content) by ensuring body is visible
+if (document.readyState === 'loading' && document.body) {
+    document.body.style.opacity = '1';
 }
 
-// Toggle theme
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
+// Wait for DOM to be fully loaded
+function init() {
+    initThemeToggle();
+    initSmoothScrolling();
+    initScrollAnimations();
+    initNavigationScroll();
+    initParallaxEffect();
+    initCardEffects();
+    initCountdownTimer();
+    initGlitterEffect();
+    initActiveNavigation();
+    initGlassCardTilt();
+    initMobileMenu();
+    initPreloadImages();
+    initLazyMaps();
+    initGalleryFiltering();
+    initGalleryAlbumTabs();
+    initVideoLightbox();
+    initRSVPForm();
+    initPhotoClickHandlers();
     
-    // Update icon
-    if (body.classList.contains('dark-mode')) {
+    // Initialize delayed features
+    setTimeout(initFolderTiles, 1000);
+    setTimeout(initMovingGalleries, 1500);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    // DOM already loaded
+    init();
+}
+
+// ==========================================
+// THEME TOGGLE - LIGHT/DARK MODE
+// ==========================================
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+    
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
+    if (!icon) return;
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-        localStorage.setItem('theme', 'light');
     }
-});
+    
+    // Toggle theme
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        // Update icon
+        if (body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
 
 // ==========================================
 // SMOOTH SCROLLING
 // ==========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
-});
+}
 
 // ==========================================
 // SCROLL ANIMATIONS
 // ==========================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-        }
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all elements with data-animate attribute
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        observer.observe(el);
     });
-}, observerOptions);
-
-// Observe all elements with data-animate attribute
-document.querySelectorAll('[data-animate]').forEach(el => {
-    observer.observe(el);
-});
+}
 
 // ==========================================
 // NAVIGATION BACKGROUND ON SCROLL
 // ==========================================
-const nav = document.querySelector('.nav-glass');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+function initNavigationScroll() {
+    const nav = document.querySelector('.nav-glass');
+    if (!nav) return;
     
-    if (currentScroll > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-});
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+}
 
 // ==========================================
 // PARALLAX EFFECT FOR HERO SECTION
 // ==========================================
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero-content');
-    const glitters = document.querySelectorAll('.glitter');
-    
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - (scrolled / 600);
-    }
-    
-    glitters.forEach((glitter, index) => {
-        glitter.style.transform = `translateY(${scrolled * (0.3 + index * 0.1)}px)`;
+function initParallaxEffect() {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero-content');
+        const glitters = document.querySelectorAll('.glitter');
+        
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            hero.style.opacity = 1 - (scrolled / 600);
+        }
+        
+        glitters.forEach((glitter, index) => {
+            glitter.style.transform = `translateY(${scrolled * (0.3 + index * 0.1)}px)`;
+        });
     });
-});
+}
 
 // ==========================================
 // CARD FLIP EFFECT ON HOVER
 // ==========================================
-document.querySelectorAll('.glass-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) rotateX(5deg)';
+function initCardEffects() {
+    document.querySelectorAll('.glass-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) rotateX(5deg)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) rotateX(0)';
+        });
     });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) rotateX(0)';
-    });
-});
-
-// ==========================================
-// LOADING ANIMATION
-// ==========================================
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-});
+}
 
 // ==========================================
 // VIDEO PLAYBACK FUNCTIONALITY
@@ -172,222 +224,237 @@ function initHeroVideo() {
     }
 }
 
-// Initialize page when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize folder tiles
-    setTimeout(initFolderTiles, 1000);
-    
-    // Initialize moving galleries
-    setTimeout(initMovingGalleries, 1500);
-});
-
 // ==========================================
 // COUNTDOWN TIMER
 // ==========================================
-function updateCountdown() {
-    const weddingDate = new Date('2026-01-22T14:00:00').getTime();
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-    
-    if (distance < 0) {
-        // Wedding day has passed
-        document.getElementById('days').textContent = '000';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
+function initCountdownTimer() {
+    function updateCountdown() {
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
         
-        // Update countdown title
-        const countdownTitle = document.querySelector('.countdown-title');
-        if (countdownTitle) {
-            countdownTitle.textContent = 'Just Married! 💕';
+        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+        
+        const weddingDate = new Date('2026-01-22T14:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        if (distance < 0) {
+            // Wedding day has passed
+            daysEl.textContent = '000';
+            hoursEl.textContent = '00';
+            minutesEl.textContent = '00';
+            secondsEl.textContent = '00';
+            
+            // Update countdown title
+            const countdownTitle = document.querySelector('.countdown-title');
+            if (countdownTitle) {
+                countdownTitle.textContent = 'Just Married! 💕';
+            }
+            return;
         }
-        return;
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Update countdown display with proper formatting
+        daysEl.textContent = days.toString().padStart(3, '0');
+        hoursEl.textContent = hours.toString().padStart(2, '0');
+        minutesEl.textContent = minutes.toString().padStart(2, '0');
+        secondsEl.textContent = seconds.toString().padStart(2, '0');
+        
+        // Add animation effect when numbers change
+        const countdownNumbers = document.querySelectorAll('.countdown-number');
+        countdownNumbers.forEach(number => {
+            number.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                number.style.transform = 'scale(1)';
+            }, 200);
+        });
     }
     
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Initialize countdown
+    updateCountdown();
     
-    // Update countdown display with proper formatting
-    document.getElementById('days').textContent = days.toString().padStart(3, '0');
-    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-    
-    // Add animation effect when numbers change
-    const countdownNumbers = document.querySelectorAll('.countdown-number');
-    countdownNumbers.forEach(number => {
-        number.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-            number.style.transform = 'scale(1)';
-        }, 200);
-    });
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
 }
-
-// Initialize countdown immediately
-updateCountdown();
-
-// Update countdown every second
-setInterval(updateCountdown, 1000);
 
 // ==========================================
 // GLITTER CURSOR EFFECT (Optional Enhancement)
 // ==========================================
-let glitterTimeout;
-
-document.addEventListener('mousemove', (e) => {
-    clearTimeout(glitterTimeout);
+function initGlitterEffect() {
+    let glitterTimeout;
     
-    glitterTimeout = setTimeout(() => {
-        const glitter = document.createElement('div');
-        glitter.className = 'cursor-glitter';
-        glitter.style.left = e.pageX + 'px';
-        glitter.style.top = e.pageY + 'px';
-        
-        const colors = ['#e8b4b8', '#d4af37', '#f4d03f'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        glitter.style.cssText = `
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: ${randomColor};
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            animation: glitterFade 1s ease-out forwards;
+    // Add glitter animation CSS dynamically
+    if (!document.getElementById('glitter-styles')) {
+        const style = document.createElement('style');
+        style.id = 'glitter-styles';
+        style.textContent = `
+            @keyframes glitterFade {
+                0% {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0) translateY(-20px);
+                }
+            }
         `;
-        
-        document.body.appendChild(glitter);
-        
-        setTimeout(() => {
-            glitter.remove();
-        }, 1000);
-    }, 50);
-});
-
-// Add glitter animation CSS dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes glitterFade {
-        0% {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-        }
-        100% {
-            opacity: 0;
-            transform: scale(0) translateY(-20px);
-        }
+        document.head.appendChild(style);
     }
-`;
-document.head.appendChild(style);
+    
+    document.addEventListener('mousemove', (e) => {
+        clearTimeout(glitterTimeout);
+        
+        glitterTimeout = setTimeout(() => {
+            const glitter = document.createElement('div');
+            glitter.className = 'cursor-glitter';
+            glitter.style.left = e.pageX + 'px';
+            glitter.style.top = e.pageY + 'px';
+            
+            const colors = ['#e8b4b8', '#d4af37', '#f4d03f'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            glitter.style.cssText = `
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                background: ${randomColor};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                animation: glitterFade 1s ease-out forwards;
+            `;
+            
+            document.body.appendChild(glitter);
+            
+            setTimeout(() => {
+                glitter.remove();
+            }, 1000);
+        }, 50);
+    });
+}
 
 // ==========================================
 // ACTIVE NAVIGATION LINK
 // ==========================================
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
-
-function highlightNavigation() {
-    const scrollY = window.pageYOffset;
+function initActiveNavigation() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
     
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
+    if (sections.length === 0 || navLinks.length === 0) return;
+    
+    function highlightNavigation() {
+        const scrollY = window.pageYOffset;
         
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', highlightNavigation);
 }
-
-window.addEventListener('scroll', highlightNavigation);
 
 // ==========================================
 // GLASS CARD TILT EFFECT
 // ==========================================
-document.querySelectorAll('.glass-card').forEach(card => {
-    // Skip tilt effect for RSVP form
-    if (card.classList.contains('rsvp-form')) {
-        return;
-    }
-    
-    card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+function initGlassCardTilt() {
+    document.querySelectorAll('.glass-card').forEach(card => {
+        // Skip tilt effect for RSVP form
+        if (card.classList.contains('rsvp-form')) {
+            return;
+        }
         
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+        });
         
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
     });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-    });
-});
+}
 
 // ==========================================
 // MOBILE MENU TOGGLE (For smaller screens)
 // ==========================================
-function createMobileMenu() {
-    if (window.innerWidth <= 480) {
-        const navContainer = document.querySelector('.nav-container');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        if (!document.querySelector('.mobile-menu-toggle')) {
-            const menuToggle = document.createElement('button');
-            menuToggle.className = 'mobile-menu-toggle';
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            menuToggle.style.cssText = `
-                background: linear-gradient(135deg, var(--rose-gold), var(--gold));
-                border: none;
-                color: white;
-                font-size: 1.5rem;
-                padding: 0.5rem 1rem;
-                border-radius: 10px;
-                cursor: pointer;
-            `;
+function initMobileMenu() {
+    function createMobileMenu() {
+        if (window.innerWidth <= 480) {
+            const navContainer = document.querySelector('.nav-container');
+            const navMenu = document.querySelector('.nav-menu');
             
-            menuToggle.addEventListener('click', () => {
-                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-                if (navMenu.style.display === 'flex') {
-                    navMenu.style.cssText = `
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        right: 0;
-                        background: rgba(255, 255, 255, 0.95);
-                        flex-direction: column;
-                        padding: 1rem;
-                        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                    `;
-                }
-            });
+            if (!navContainer || !navMenu) return;
             
-            navContainer.appendChild(menuToggle);
+            if (!document.querySelector('.mobile-menu-toggle')) {
+                const menuToggle = document.createElement('button');
+                menuToggle.className = 'mobile-menu-toggle';
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                menuToggle.style.cssText = `
+                    background: linear-gradient(135deg, var(--rose-gold), var(--gold));
+                    border: none;
+                    color: white;
+                    font-size: 1.5rem;
+                    padding: 0.5rem 1rem;
+                    border-radius: 10px;
+                    cursor: pointer;
+                `;
+                
+                menuToggle.addEventListener('click', () => {
+                    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+                    if (navMenu.style.display === 'flex') {
+                        navMenu.style.cssText = `
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            right: 0;
+                            background: rgba(255, 255, 255, 0.95);
+                            flex-direction: column;
+                            padding: 1rem;
+                            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                        `;
+                    }
+                });
+                
+                navContainer.appendChild(menuToggle);
+            }
         }
     }
+    
+    window.addEventListener('resize', createMobileMenu);
+    createMobileMenu();
 }
-
-window.addEventListener('resize', createMobileMenu);
-createMobileMenu();
 
 // ==========================================
 // PRELOAD IMAGES (If you add background images)
 // ==========================================
-function preloadImages() {
+function initPreloadImages() {
     // Add any background images you want to preload
     const images = [];
     
@@ -397,33 +464,35 @@ function preloadImages() {
     });
 }
 
-preloadImages();
-
 // ==========================================
 // LAZY LOADING FOR MAPS
 // ==========================================
-const mapObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const iframe = entry.target.querySelector('iframe');
-            if (iframe && !iframe.src) {
-                iframe.src = iframe.dataset.src;
+function initLazyMaps() {
+    const mapObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const iframe = entry.target.querySelector('iframe');
+                if (iframe && !iframe.src) {
+                    iframe.src = iframe.dataset.src;
+                }
             }
-        }
+        });
     });
-});
-
-document.querySelectorAll('.map-container').forEach(map => {
-    mapObserver.observe(map);
-});
+    
+    document.querySelectorAll('.map-container').forEach(map => {
+        mapObserver.observe(map);
+    });
+}
 
 // ==========================================
 // GALLERY FILTERING - PILL TABS
 // ==========================================
-document.addEventListener('DOMContentLoaded', function() {
+function initGalleryFiltering() {
     const filterPills = document.querySelectorAll('.filter-pill');
     const movingGalleries = document.querySelectorAll('.moving-gallery-section');
     const galleryGridViews = document.querySelectorAll('.gallery-grid-view');
+    
+    if (filterPills.length === 0) return;
     
     filterPills.forEach(pill => {
         pill.addEventListener('click', function() {
@@ -488,7 +557,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
+}
 
 // Function to open photo modal from grid view
 function openPhotoModalFromGrid(imageSrc, imageAlt) {
@@ -507,153 +576,6 @@ function openPhotoModalFromGrid(imageSrc, imageAlt) {
     }
 }
 
-// ==========================================
-// GALLERY FILTERING - ALBUM STYLE
-// ==========================================
-const galleryTabs = document.querySelectorAll('.gallery-tab');
-const galleryAlbums = document.querySelectorAll('.gallery-album');
-
-galleryTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-        // Remove active class from all tabs
-        galleryTabs.forEach(t => t.classList.remove('active'));
-        
-        // Add active class to clicked tab
-        this.classList.add('active');
-        
-        // Get the category
-        const category = this.getAttribute('data-category');
-        
-        // Filter gallery albums with smooth animation
-        galleryAlbums.forEach(album => {
-            const albumCategory = album.getAttribute('data-category');
-            
-            if (category === 'all' || albumCategory === category) {
-                // Show album
-                album.style.display = 'block';
-                album.style.opacity = '0';
-                album.style.transform = 'translateY(30px) scale(0.9)';
-                
-                setTimeout(() => {
-                    album.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    album.style.opacity = '1';
-                    album.style.transform = 'translateY(0) scale(1)';
-                }, 50);
-            } else {
-                // Hide album with animation
-                album.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                album.style.opacity = '0';
-                album.style.transform = 'translateY(-20px) scale(0.95)';
-                
-                setTimeout(() => {
-                    album.style.display = 'none';
-                }, 400);
-            }
-        });
-        
-        // Add a subtle animation to the tab itself
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 150);
-    });
-});
-
-// Initialize gallery albums with transition
-galleryAlbums.forEach(album => {
-    album.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-});
-
-// Add click animation to tabs
-galleryTabs.forEach(tab => {
-    tab.style.transition = 'transform 0.2s ease';
-});
-
-// ==========================================
-// MOVING GALLERY INTERACTIONS
-// ==========================================
-function initMovingGalleries() {
-    const galleryTracks = document.querySelectorAll('.moving-gallery-track');
-    
-    galleryTracks.forEach(track => {
-        // Add click events to photo cards
-        const photoCards = track.querySelectorAll('.photo-card');
-        photoCards.forEach(card => {
-            card.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                const title = this.querySelector('.photo-title');
-                
-                // Create photo data for modal
-                const photoData = {
-                    src: img.src,
-                    alt: img.alt,
-                    title: title.textContent,
-                    description: `${title.textContent} - Wedding Photo`
-                };
-                
-                // Open photo modal
-                openPhotoModal(photoData);
-                
-                // Add click animation
-                this.style.transform = 'translateY(-10px) scale(1.05)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-            
-            // Add hover pause effect
-            card.addEventListener('mouseenter', function() {
-                track.style.animationPlayState = 'paused';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                track.style.animationPlayState = 'running';
-            });
-        });
-        
-        // Add touch support for mobile
-        track.addEventListener('touchstart', function() {
-            this.style.animationPlayState = 'paused';
-        });
-        
-        track.addEventListener('touchend', function() {
-            setTimeout(() => {
-                this.style.animationPlayState = 'running';
-            }, 1000);
-        });
-    });
-}
-
-
-
-// ==========================================
-// FOLDER TILE INTERACTIONS
-// ==========================================
-function initFolderTiles() {
-    const folderTiles = document.querySelectorAll('.folder-tile');
-    
-    folderTiles.forEach((tile, index) => {
-        // Add staggered animation delay
-        tile.style.animationDelay = `${index * 0.1}s`;
-        
-        // Add click event for folder opening
-        tile.addEventListener('click', function(e) {
-            e.preventDefault();
-            openFolder(this);
-        });
-        
-        // Add hover effects
-        tile.addEventListener('mouseenter', function() {
-            this.style.animationPlayState = 'paused';
-        });
-        
-        tile.addEventListener('mouseleave', function() {
-            if (!this.classList.contains('active')) {
-                this.style.animationPlayState = 'running';
-            }
-        });
-    });
-}
 
 function openFolder(folderTile) {
     // Remove active class from all folders
@@ -755,36 +677,6 @@ const photoData = {
     ]
 };
 
-// Add click events to all photos
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click events to main images
-    document.querySelectorAll('.main-image').forEach((img, index) => {
-        img.addEventListener('click', function() {
-            const album = this.closest('.gallery-album');
-            const category = album.getAttribute('data-category');
-            openPhotoModal(category, 0);
-        });
-    });
-
-    // Add click events to thumbnails
-    document.querySelectorAll('.thumbnail').forEach((img, index) => {
-        img.addEventListener('click', function() {
-            const album = this.closest('.gallery-album');
-            const category = album.getAttribute('data-category');
-            const thumbnailIndex = Array.from(this.parentNode.children).indexOf(this);
-            openPhotoModal(category, thumbnailIndex + 1);
-        });
-    });
-
-    // Add click events to "more photos" indicators
-    document.querySelectorAll('.more-photos').forEach((element, index) => {
-        element.addEventListener('click', function() {
-            const album = this.closest('.gallery-album');
-            const category = album.getAttribute('data-category');
-            openPhotoModal(category, 3); // Start from the 4th photo
-        });
-    });
-});
 
 function openPhotoModal(category, photoIndex) {
     currentPhotos = photoData[category] || [];
@@ -859,11 +751,13 @@ document.addEventListener('keydown', function(e) {
 // RSVP FORM SUBMISSION TO GOOGLE SHEETS
 // ==========================================
 // Google Apps Script Web App URL - Connected to your Google Sheet
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtCS_qnXGzgESHs7JxovpnaVHZuDWr4LoXRiW3ePQRNk_Iqn56lxEAL4QfWyF_30HH/exec';
-// Target Sheet: https://docs.google.com/spreadsheets/d/1ClZ5TtSu3babJjR-yBmZb7YSTRdRFcgSCbY5aZZY0X4/edit
-
-const rsvpForm = document.getElementById('rsvpForm');
-if (rsvpForm) {
+// ==========================================
+// RSVP FORM INITIALIZATION
+// ==========================================
+function initRSVPForm() {
+    const rsvpForm = document.getElementById('rsvpForm');
+    if (!rsvpForm) return;
+    
     rsvpForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -1202,8 +1096,10 @@ function closeVideoLightbox() {
     document.body.style.overflow = '';
 }
 
-// Initialize video cards
-document.addEventListener('DOMContentLoaded', function() {
+// ==========================================
+// VIDEO LIGHTBOX INITIALIZATION
+// ==========================================
+function initVideoLightbox() {
     const videoCards = document.querySelectorAll('.video-card');
     
     videoCards.forEach(card => {
@@ -1239,7 +1135,196 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
+}
+
+// ==========================================
+// MOVING GALLERY INTERACTIONS
+// ==========================================
+function initMovingGalleries() {
+    const galleryTracks = document.querySelectorAll('.moving-gallery-track');
+    
+    galleryTracks.forEach(track => {
+        // Add click events to photo cards
+        const photoCards = track.querySelectorAll('.photo-card');
+        photoCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const title = this.querySelector('.photo-title');
+                
+                // Create photo data for modal
+                const photoData = {
+                    src: img.src,
+                    alt: img.alt,
+                    title: title ? title.textContent : '',
+                    description: `${title ? title.textContent : ''} - Wedding Photo`
+                };
+                
+                // Open photo modal
+                openPhotoModalFromGrid(photoData.src, photoData.alt);
+                
+                // Add click animation
+                this.style.transform = 'translateY(-10px) scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+            
+            // Add hover pause effect
+            card.addEventListener('mouseenter', function() {
+                track.style.animationPlayState = 'paused';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                track.style.animationPlayState = 'running';
+            });
+        });
+        
+        // Add touch support for mobile
+        track.addEventListener('touchstart', function() {
+            this.style.animationPlayState = 'paused';
+        });
+        
+        track.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.style.animationPlayState = 'running';
+            }, 1000);
+        });
+    });
+}
+
+// ==========================================
+// FOLDER TILE INTERACTIONS
+// ==========================================
+function initFolderTiles() {
+    const folderTiles = document.querySelectorAll('.folder-tile');
+    
+    folderTiles.forEach((tile, index) => {
+        // Add staggered animation delay
+        tile.style.animationDelay = `${index * 0.1}s`;
+        
+        // Add click event for folder opening
+        tile.addEventListener('click', function(e) {
+            e.preventDefault();
+            openFolder(this);
+        });
+        
+        // Add hover effects
+        tile.addEventListener('mouseenter', function() {
+            this.style.animationPlayState = 'paused';
+        });
+        
+        tile.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('active')) {
+                this.style.animationPlayState = 'running';
+            }
+        });
+    });
+}
+
+// ==========================================
+// GALLERY FILTERING - ALBUM STYLE
+// ==========================================
+function initGalleryAlbumTabs() {
+    const galleryTabs = document.querySelectorAll('.gallery-tab');
+    const galleryAlbums = document.querySelectorAll('.gallery-album');
+    
+    if (galleryTabs.length === 0 || galleryAlbums.length === 0) return;
+    
+    galleryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            galleryTabs.forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Get the category
+            const category = this.getAttribute('data-category');
+            
+            // Filter gallery albums with smooth animation
+            galleryAlbums.forEach(album => {
+                const albumCategory = album.getAttribute('data-category');
+                
+                if (category === 'all' || albumCategory === category) {
+                    // Show album
+                    album.style.display = 'block';
+                    album.style.opacity = '0';
+                    album.style.transform = 'translateY(30px) scale(0.9)';
+                    
+                    setTimeout(() => {
+                        album.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        album.style.opacity = '1';
+                        album.style.transform = 'translateY(0) scale(1)';
+                    }, 50);
+                } else {
+                    // Hide album with animation
+                    album.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    album.style.opacity = '0';
+                    album.style.transform = 'translateY(-20px) scale(0.95)';
+                    
+                    setTimeout(() => {
+                        album.style.display = 'none';
+                    }, 400);
+                }
+            });
+            
+            // Add a subtle animation to the tab itself
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+    
+    // Initialize gallery albums with transition
+    galleryAlbums.forEach(album => {
+        album.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    // Add click animation to tabs
+    galleryTabs.forEach(tab => {
+        tab.style.transition = 'transform 0.2s ease';
+    });
+}
+
+// ==========================================
+// PHOTO CLICK HANDLERS
+// ==========================================
+function initPhotoClickHandlers() {
+    // Add click events to main images
+    document.querySelectorAll('.main-image').forEach((img, index) => {
+        img.addEventListener('click', function() {
+            const album = this.closest('.gallery-album');
+            const category = album ? album.getAttribute('data-category') : null;
+            if (category) {
+                openPhotoModal(category, 0);
+            }
+        });
+    });
+
+    // Add click events to thumbnails
+    document.querySelectorAll('.thumbnail').forEach((img, index) => {
+        img.addEventListener('click', function() {
+            const album = this.closest('.gallery-album');
+            const category = album ? album.getAttribute('data-category') : null;
+            if (category) {
+                const thumbnailIndex = Array.from(this.parentNode.children).indexOf(this);
+                openPhotoModal(category, thumbnailIndex + 1);
+            }
+        });
+    });
+
+    // Add click events to "more photos" indicators
+    document.querySelectorAll('.more-photos').forEach((element, index) => {
+        element.addEventListener('click', function() {
+            const album = this.closest('.gallery-album');
+            const category = album ? album.getAttribute('data-category') : null;
+            if (category) {
+                openPhotoModal(category, 3); // Start from the 4th photo
+            }
+        });
+    });
+}
 
 console.log('🎉 Wedding Website Loaded Successfully!');
 console.log('Christine Joyce & Jay - January 22, 2026 ❤️');

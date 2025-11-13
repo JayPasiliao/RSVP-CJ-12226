@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "live-server --port=3000 --open=/ --watch=.",
     "start": "live-server --port=3000",
+    "build": "node -c script.js && echo Build successful - Static site ready for deployment",
     "next:dev": "next dev -p 3001",
     "next:build": "next build",
     "next:start": "next start",
