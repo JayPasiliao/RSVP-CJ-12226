@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christine & Jay - January 22, 2026</title>
-    <link rel="icon" type="image/png" href="public/Favicon Logo Rsvp.png">
-    <link rel="shortcut icon" type="image/png" href="public/Favicon Logo Rsvp.png">
-    <link rel="apple-touch-icon" href="public/Favicon Logo Rsvp.png">
+    <title>Christine and Jay - January 22, 2026</title>
+    <link rel="icon" type="image/png" href="public/Logo 2A.png">
+    <link rel="shortcut icon" type="image/png" href="public/Logo 2A.png">
+    <link rel="apple-touch-icon" href="public/Logo 2A.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
     <nav class="nav-glass">
         <div class="nav-container">
             <div class="logo-container">
-                <img src="INTLOGO1.png" alt="Christine & Jay Logo" class="logo">
-                <img src="INTLOGO2.png" alt="Christine & Jay Logo" class="logo">
+                <img src="INTLOGO1.png" alt="Christine and Jay Logo" class="logo">
+                <img src="INTLOGO2.png" alt="Christine and Jay Logo" class="logo">
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -37,19 +37,8 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Video Background -->
-        <video 
-            id="heroVideo"
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="auto"
-            class="hero-video-bg"
-        >
-            <source src="public/videos/Proposal Video/FDownloader.Net_AQNF3FJ8wmScX3VY7HRIwjxU231BeG13Jm8A2lU4RYjvyJKbd8pFwT2YVCzTVhazp97bmrP3wjUq5Yfyti3Vp6RFryYKAPvqJJfaAYb9EGfghQ_720p_(HD).mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video>
+        <!-- Image Background -->
+        <div class="hero-image-bg" style="background-image: url('Prenup Photos/579975803_26034085669515202_4918153834199093834_n.jpg');"></div>
         
         <!-- Video Overlay -->
         <div class="hero-video-overlay"></div>
@@ -59,9 +48,15 @@
         <div class="hero-content">
             <div class="hero-text-overlay">
                 <div class="hero-logo-top">
-                    <img src="logo-2.png" alt="Christine & Jay Wedding Logo" class="hero-logo-img">
+                    <img src="public/Logo 2A.png" alt="Christine and Jay Wedding Logo" class="hero-logo-img">
                 </div>
-                <h1 class="hero-names">Christine & Jay</h1>
+                <h1 class="hero-names">
+                    <span class="hero-name-large">Christine</span>
+                    <span class="hero-name-line-2">
+                        <span class="hero-name-connector">and</span>
+                        <span class="hero-name-large">Jay</span>
+                    </span>
+                </h1>
                 <p class="hero-announcement">WE'RE GETTING MARRIED</p>
                 <p class="hero-date-time">JANUARY 22, 2026 • 2:00 PM</p>
             </div>
@@ -94,7 +89,7 @@
                     <h3>Date</h3>
                     <p class="detail-date">Wednesday</p>
                     <p class="detail-date-full">January 22, 2026</p>
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Christine+Joyce+%26+Jay+Wedding&dates=20260122T060000Z/20260122T100000Z&details=Wedding+ceremony+and+reception+for+Christine+Joyce+C.+Bentinganan+and+Juanito+S.+Pasiliao+Jr.&location=Our+Lady+of+Atonement+Cathedral,+Baguio+City" target="_blank" class="btn-link">Add to Calendar</a>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Christine+Joyce+and+Jay+Wedding&dates=20260122T060000Z/20260122T100000Z&details=Wedding+ceremony+and+reception+for+Christine+Joyce+C.+Bentinganan+and+Juanito+S.+Pasiliao+Jr.&location=Our+Lady+of+Atonement+Cathedral,+Baguio+City" target="_blank" class="btn-link">Add to Calendar</a>
                 </div>
                 <div class="detail-card glass-card" data-animate>
                     <div class="card-icon">
@@ -131,12 +126,15 @@
                         <span class="countdown-label">Seconds</span>
                     </div>
                 </div>
+                <p class="countdown-quote">Each passing moment brings us closer to saying "I do." The wait may feel long, but every second is a beautiful reminder that love is worth the time it takes to reach forever.</p>
             </div>
         </div>
     </section>
 
     <!-- Full Names Section -->
     <section class="section names-section">
+        <div class="names-section-bg" style="background-image: url('Prenup Photos/575896935_25993085763615193_3037169480788289199_n.jpg');"></div>
+        <div class="names-section-overlay"></div>
         <div class="container">
             <div class="names-content glass-card" data-animate>
                 <div class="name-block">
@@ -167,7 +165,192 @@
                 <button class="filter-pill active" data-category="all">All</button>
                 <button class="filter-pill" data-category="proposal">Proposal</button>
                 <button class="filter-pill" data-category="prenup">Pre-Nup</button>
-                <button class="filter-pill" data-category="highlights">Highlights</button>
+            </div>
+
+            <!-- Gallery Grid Views -->
+            <div class="gallery-grid-views">
+                <!-- Proposal Gallery Grid -->
+                <div class="gallery-grid-view" id="proposal-gallery-grid" data-category="proposal" style="display: none;">
+                    <div class="gallery-grid">
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/505770536_24662337606690022_6247054290622585558_n.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/505823679_24662339286689854_1698641479091671292_n.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/505874268_24662337613356688_3556176914338011555_n.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/505925800_24662337533356696_1335563579438879243_n.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/505993278_24662337360023380_8484015320207932532_n.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/506074596_24662339640023152_3708833398606546017_n.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/proposal-1.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/proposal-2.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/proposal-3.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/proposal-4.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/proposal-5.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/proposal-6.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Proposal Photos/proposal-7.jpg" alt="Proposal Photo" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pre-Nup Gallery Grid -->
+                <div class="gallery-grid-view" id="prenup-gallery-grid" data-category="prenup" style="display: none;">
+                    <div class="gallery-grid">
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/575896935_25993085763615193_3037169480788289199_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/576888239_25993041823619587_7081389363847178468_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577002366_25993081636948939_4678500296905864639_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577116764_25993097906947312_1287352419855032324_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577272127_25993101543613615_188383720182504827_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577465983_25993100346947068_6022403069435423605_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577553854_25992979823625787_2949245829177433156_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577566722_25993092166947886_5502892695525140807_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577586606_25993105943613175_493880607031505834_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577598912_25993043250286111_128385303132028113_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577625989_25993069423616827_8968085486835766310_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577645464_25993060256951077_6126571518208531380_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577657663_25993077920282644_4227968952694297851_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577680323_25993100100280426_8560878882866522167_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577680707_25993095613614208_9032162424721516816_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577698864_25993030480287388_3931407449615877547_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577706205_25993038590286577_2971769626725070520_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577774371_25993010303622739_3570758106739960196_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577804610_25993048553618914_8755704576390039352_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577806399_25993051956951907_2055341620266113328_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577806422_25992979453625824_1198771292242463085_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577833806_25993109266946176_7864196255533841847_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577880215_25993045616952541_5822022661715831016_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/577970146_25993075180282918_7884267306068709939_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/578298873_25992996330290803_7137082923944256606_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/578369966_25993061620284274_5433080844339391962_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/578428349_25993088350281601_3736894802939170095_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/578431245_25993074563616313_6989127926581357585_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/578613568_25993024856954617_7631135271442584981_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/578712673_25993007250289711_5821309327950753000_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579072720_25993038736953229_1918398087354910084_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579095391_25993041243619645_4160957648681427106_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579164539_25993104740279962_6871220309583899882_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579212392_25993023390288097_9186189159844740723_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579580618_25993049786952124_8178754681387607971_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579582953_25993070150283421_4406423358115880882_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579635038_25993044756952627_7741712221154579024_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579652063_25993029550287481_5818843770811281145_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579675443_25992990086958094_7170225014641488351_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579780654_25993110143612755_1502318322132985855_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579868650_25993117633612006_5249358875095420356_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579937654_25993047066952396_1174133202297476696_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/579975803_26034085669515202_4918153834199093834_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                        <div class="gallery-grid-item">
+                            <img src="Prenup Photos/580519921_25993063226950780_3061597864555662055_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Moving Photo Galleries -->
@@ -233,73 +416,608 @@
                         <p class="gallery-subtitle">Beautiful moments before the big day</p>
                     </div>
                     <div class="moving-gallery-container">
-                        <div class="moving-gallery-track" data-direction="right">
+                        <div class="moving-gallery-track moving-gallery-slow" data-direction="right">
+                            <!-- First set of photos for seamless loop -->
                             <div class="photo-card">
-                                <img src="prenup-1.jpg" alt="Elegant Pose" loading="lazy">
+                                <img src="Prenup Photos/575896935_25993085763615193_3037169480788289199_n.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Elegant Pose</span>
+                                    <span class="photo-title">Pre-Nup Session</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="prenup-2.jpg" alt="Romantic Moment" loading="lazy">
+                                <img src="Prenup Photos/576888239_25993041823619587_7081389363847178468_n.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Romantic Moment</span>
+                                    <span class="photo-title">Pre-Nup Session</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="prenup-3.jpg" alt="Candid Laugh" loading="lazy">
+                                <img src="Prenup Photos/577002366_25993081636948939_4678500296905864639_n.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Candid Laugh</span>
+                                    <span class="photo-title">Pre-Nup Session</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="prenup-4.jpg" alt="Sweet Embrace" loading="lazy">
+                                <img src="Prenup Photos/577116764_25993097906947312_1287352419855032324_n.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Sweet Embrace</span>
+                                    <span class="photo-title">Pre-Nup Session</span>
                                 </div>
                             </div>
                             <div class="photo-card">
-                                <img src="prenup-5.jpg" alt="Perfect Shot" loading="lazy">
+                                <img src="Prenup Photos/577272127_25993101543613615_188383720182504827_n.jpg" alt="Pre-Nup Photo" loading="lazy">
                                 <div class="photo-overlay">
-                                    <span class="photo-title">Perfect Shot</span>
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577465983_25993100346947068_6022403069435423605_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                        </div>
+                    </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577553854_25992979823625787_2949245829177433156_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                    </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577566722_25993092166947886_5502892695525140807_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577586606_25993105943613175_493880607031505834_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577598912_25993043250286111_128385303132028113_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577625989_25993069423616827_8968085486835766310_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577645464_25993060256951077_6126571518208531380_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577657663_25993077920282644_4227968952694297851_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577680323_25993100100280426_8560878882866522167_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577680707_25993095613614208_9032162424721516816_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577698864_25993030480287388_3931407449615877547_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577706205_25993038590286577_2971769626725070520_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577774371_25993010303622739_3570758106739960196_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577804610_25993048553618914_8755704576390039352_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577806399_25993051956951907_2055341620266113328_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577806422_25992979453625824_1198771292242463085_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577833806_25993109266946176_7864196255533841847_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577880215_25993045616952541_5822022661715831016_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577970146_25993075180282918_7884267306068709939_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578298873_25992996330290803_7137082923944256606_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578369966_25993061620284274_5433080844339391962_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578428349_25993088350281601_3736894802939170095_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578431245_25993074563616313_6989127926581357585_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578613568_25993024856954617_7631135271442584981_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578712673_25993007250289711_5821309327950753000_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579072720_25993038736953229_1918398087354910084_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579095391_25993041243619645_4160957648681427106_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579164539_25993104740279962_6871220309583899882_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579212392_25993023390288097_9186189159844740723_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579580618_25993049786952124_8178754681387607971_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579582953_25993070150283421_4406423358115880882_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579635038_25993044756952627_7741712221154579024_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579652063_25993029550287481_5818843770811281145_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579675443_25992990086958094_7170225014641488351_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579780654_25993110143612755_1502318322132985855_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579868650_25993117633612006_5249358875095420356_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579937654_25993047066952396_1174133202297476696_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579975803_26034085669515202_4918153834199093834_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/580519921_25993063226950780_3061597864555662055_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <!-- Duplicate set for seamless infinite loop -->
+                            <div class="photo-card">
+                                <img src="Prenup Photos/575896935_25993085763615193_3037169480788289199_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/576888239_25993041823619587_7081389363847178468_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577002366_25993081636948939_4678500296905864639_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577116764_25993097906947312_1287352419855032324_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577272127_25993101543613615_188383720182504827_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577465983_25993100346947068_6022403069435423605_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577553854_25992979823625787_2949245829177433156_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577566722_25993092166947886_5502892695525140807_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577586606_25993105943613175_493880607031505834_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577598912_25993043250286111_128385303132028113_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577625989_25993069423616827_8968085486835766310_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577645464_25993060256951077_6126571518208531380_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577657663_25993077920282644_4227968952694297851_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577680323_25993100100280426_8560878882866522167_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577680707_25993095613614208_9032162424721516816_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577698864_25993030480287388_3931407449615877547_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577706205_25993038590286577_2971769626725070520_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577774371_25993010303622739_3570758106739960196_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577804610_25993048553618914_8755704576390039352_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577806399_25993051956951907_2055341620266113328_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577806422_25992979453625824_1198771292242463085_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577833806_25993109266946176_7864196255533841847_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577880215_25993045616952541_5822022661715831016_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/577970146_25993075180282918_7884267306068709939_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578298873_25992996330290803_7137082923944256606_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578369966_25993061620284274_5433080844339391962_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578428349_25993088350281601_3736894802939170095_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578431245_25993074563616313_6989127926581357585_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578613568_25993024856954617_7631135271442584981_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/578712673_25993007250289711_5821309327950753000_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579072720_25993038736953229_1918398087354910084_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579095391_25993041243619645_4160957648681427106_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579164539_25993104740279962_6871220309583899882_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579212392_25993023390288097_9186189159844740723_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579580618_25993049786952124_8178754681387607971_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579582953_25993070150283421_4406423358115880882_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579635038_25993044756952627_7741712221154579024_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579652063_25993029550287481_5818843770811281145_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579675443_25992990086958094_7170225014641488351_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579780654_25993110143612755_1502318322132985855_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579868650_25993117633612006_5249358875095420356_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579937654_25993047066952396_1174133202297476696_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/579975803_26034085669515202_4918153834199093834_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
+                                </div>
+                            </div>
+                            <div class="photo-card">
+                                <img src="Prenup Photos/580519921_25993063226950780_3061597864555662055_n.jpg" alt="Pre-Nup Photo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <span class="photo-title">Pre-Nup Session</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Highlights Moving Gallery -->
-                <section class="moving-gallery-section" data-category="highlights" data-animate>
-                    <div class="gallery-header">
-                        <h3 class="gallery-title">✨ Highlights</h3>
-                        <p class="gallery-subtitle">Our favorite moments together</p>
-                    </div>
-                    <div class="moving-gallery-container">
-                        <div class="moving-gallery-track" data-direction="left">
-                            <div class="photo-card">
-                                <img src="highlight-1.jpg" alt="Adventure Together" loading="lazy">
-                                <div class="photo-overlay">
-                                    <span class="photo-title">Adventure Together</span>
-                                </div>
-                            </div>
-                            <div class="photo-card">
-                                <img src="highlight-2.jpg" alt="Quiet Moments" loading="lazy">
-                                <div class="photo-overlay">
-                                    <span class="photo-title">Quiet Moments</span>
-                                </div>
-                            </div>
-                            <div class="photo-card">
-                                <img src="highlight-3.jpg" alt="Celebration" loading="lazy">
-                                <div class="photo-overlay">
-                                    <span class="photo-title">Celebration</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
     </section>
+
+    <!-- Video Sections -->
+    <section class="video-sections">
+        <div class="container">
+            <!-- Proposal Video Section -->
+            <div class="video-section">
+                <div class="video-section-header">
+                    <h2 class="video-section-title">Proposal Video</h2>
+                    <p class="video-section-subtitle">Our special moment captured forever</p>
+                </div>
+                <div class="video-grid">
+                    <div class="video-card" data-video-type="mp4" data-video-src="Proposal Video/FDownloader.Net_AQNF3FJ8wmScX3VY7HRIwjxU231BeG13Jm8A2lU4RYjvyJKbd8pFwT2YVCzTVhazp97bmrP3wjUq5Yfyti3Vp6RFryYKAPvqJJfaAYb9EGfghQ_720p_(HD).mp4">
+                        <div class="video-poster">
+                            <img src="proposal-1.jpg" alt="Proposal Video" loading="lazy">
+                        </div>
+                        <div class="video-overlay"></div>
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Our Proposal</h3>
+                            <p class="video-caption">The moment we said yes to forever</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pre-Nup Video Section -->
+            <div class="video-section">
+                <div class="video-section-header">
+                    <h2 class="video-section-title">Pre-Nup Video</h2>
+                    <p class="video-section-subtitle">Beautiful moments before the big day</p>
+                </div>
+                <div class="video-grid">
+                    <div class="video-card" data-video-type="mp4" data-video-src="Prenup VIdeo/AQOV_ChGhMndLbQUMP99ElDiXR_N2vzYiZuPHnbiU31EScbSoyoPWPEftFC1ktoJ47pn7psX_-My0NEJigLh0yYuPeHP8s_Wq5xusqi6fQ7kRA.mp4">
+                        <div class="video-poster">
+                            <img src="Prenup Photos/579975803_26034085669515202_4918153834199093834_n.jpg" alt="Pre-Nup Video" loading="lazy">
+                        </div>
+                        <div class="video-overlay"></div>
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Pre-Nup Session</h3>
+                            <p class="video-caption">Capturing our love story</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Lightbox -->
+    <div id="videoLightbox" class="video-lightbox">
+        <div class="video-lightbox-backdrop"></div>
+        <div class="video-lightbox-container">
+            <button class="video-lightbox-close" aria-label="Close video">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-lightbox-content">
+                <div class="video-embed-wrapper" id="videoEmbed"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Principal Sponsors Section -->
     <section class="section sponsors-section">
@@ -413,6 +1131,154 @@
                     <h3>Candle</h3>
                     <p class="sponsor-name">Mary Jane Sortejas</p>
                     <p class="sponsor-name">Levi Beltran</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bearers and Offertory Section -->
+    <section class="section bearers-offertory-section">
+        <div class="container bearers-offertory-container">
+            <h2 class="section-title" data-animate>Bearers and Offertory</h2>
+            
+            <!-- Bearers -->
+            <div class="bearers-group" data-animate>
+                <h3 class="subsection-title">Bearers</h3>
+                <div class="bearers-grid">
+                    <div class="bearer-card glass-card">
+                        <div class="bearer-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>Bible</h4>
+                        <p class="bearer-name">Asher Samuel Beltran</p>
+                    </div>
+                    <div class="bearer-card glass-card">
+                        <div class="bearer-icon">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                        <h4>Ring Bearer</h4>
+                        <p class="bearer-name">Arvis Ezio Bentinganan</p>
+                    </div>
+                    <div class="bearer-card glass-card">
+                        <div class="bearer-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4>Coin Bearer</h4>
+                        <p class="bearer-name">Franz Ely Pimienta</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flower Girls -->
+            <div class="flower-girls-group" data-animate>
+                <h3 class="subsection-title">Flower Girls</h3>
+                <div class="flower-girls-grid">
+                    <div class="flower-girl-card glass-card">
+                        <div class="flower-girl-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <p class="flower-girl-name">Cheska Jean Lawagan</p>
+                    </div>
+                    <div class="flower-girl-card glass-card">
+                        <div class="flower-girl-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <p class="flower-girl-name">Francheska Maine Pimienta</p>
+                    </div>
+                    <div class="flower-girl-card glass-card">
+                        <div class="flower-girl-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <p class="flower-girl-name">Alyana Mcxine Chua</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offertory -->
+            <div class="offertory-group" data-animate>
+                <h3 class="subsection-title">Offertory</h3>
+                <div class="offertory-grid">
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">Jesalie Ringor -Pasiliao</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">Chelsea Joy Lawagan</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">Alpha Marcelino</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">Ma Rosella Marcelino</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">Elvy Estacio</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">Marvin Pasiliao</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">Mc Khallie Comia</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">John Russel Marcelino</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">David Beltran</p>
+                    </div>
+                    <div class="offertory-card glass-card">
+                        <div class="offertory-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <p class="offertory-name">Arnel Zamoranos</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Readers -->
+            <div class="readers-group" data-animate>
+                <h3 class="subsection-title">Readers</h3>
+                <div class="readers-grid">
+                    <div class="reader-card glass-card">
+                        <div class="reader-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h4>1st Reading, Responsorial Psalm</h4>
+                        <p class="reader-name">Edison Go</p>
+                    </div>
+                    <div class="reader-card glass-card">
+                        <div class="reader-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h4>2nd Reading, Prayers of the Faithful</h4>
+                        <p class="reader-name">Emmanuel Bentinganan</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -709,7 +1575,7 @@
                                     <i class="fas fa-user-tie"></i>
                                 </div>
                                 <h4 class="attire-info-heading">GENTLEMEN</h4>
-                                <p class="attire-info-text">Barong with black slacks</p>
+                                <p class="attire-info-text">Barong; trousers in <b>brown</b>, <b>cream</b>, <b>beige</b>, or <b>champagne</b>.</p>
                             </div>
 
                             <div class="attire-info-card">
@@ -717,7 +1583,7 @@
                                     <i class="fas fa-female"></i>
                                 </div>
                                 <h4 class="attire-info-heading">LADIES</h4>
-                                <p class="attire-info-text">Long gowns and dresses</p>
+                                <p class="attire-info-text">Long gowns or dresses in <b>rose gold</b>, <b>pink</b>, or <b>champagne</b>.</p>
                             </div>
                         </div>
 
@@ -727,17 +1593,18 @@
                                 <div class="color-group-inline">
                                     <p class="color-group-label">Groomsmen</p>
                                     <div class="color-swatches-inline">
-                                        <div class="color-swatch-small" style="background-color: #f5f5dc;" title="Beige"></div>
-                                        <div class="color-swatch-small" style="background-color: #ffffff; border: 1px solid #ddd;" title="White"></div>
-                                        <div class="color-swatch-small" style="background-color: #f7e7ce;" title="Champagne"></div>
+                                        <div class="color-swatch-small" style="background-color: #5C4A3F;" title="Brown" aria-label="Brown"></div>
+                                        <div class="color-swatch-small" style="background-color: #F5E9D7;" title="Cream" aria-label="Cream"></div>
+                                        <div class="color-swatch-small" style="background-color: #E8D3B0;" title="Beige" aria-label="Beige"></div>
+                                        <div class="color-swatch-small" style="background-color: #F1E0C5;" title="Champagne" aria-label="Champagne"></div>
                                     </div>
                                 </div>
                                 <div class="color-group-inline">
                                     <p class="color-group-label">Bridesmaids</p>
                                     <div class="color-swatches-inline">
-                                        <div class="color-swatch-small" style="background-color: #e8b4b8;" title="Rose Gold"></div>
-                                        <div class="color-swatch-small" style="background-color: #f6e1e5;" title="Blush"></div>
-                                        <div class="color-swatch-small" style="background-color: #d4989c;" title="Dusty Rose"></div>
+                                        <div class="color-swatch-small" style="background-color: #C48F96;" title="Rose Gold" aria-label="Rose Gold"></div>
+                                        <div class="color-swatch-small" style="background-color: #F6C1C7;" title="Pink" aria-label="Pink"></div>
+                                        <div class="color-swatch-small" style="background-color: #F1E0C5;" title="Champagne" aria-label="Champagne"></div>
                                     </div>
                                 </div>
                             </div>
@@ -767,7 +1634,7 @@
                     <div class="contact-header">
                         <i class="fas fa-user-tie"></i>
                         <h3>The Groom</h3>
-                        <p class="contact-full-name">Juanito S. Pasiliao Jr. (Jay)</p>
+                        <p class="contact-full-name">Arch. Juanito (Jay) Pasiliao Jr.</p>
                     </div>
                     <div class="contact-info">
                         <a href="tel:09171539062" class="contact-link">
@@ -787,7 +1654,7 @@
 
                 <div class="contact-card glass-card" data-animate>
                     <div class="contact-header">
-                        <i class="fas fa-user-crown"></i>
+                        <i class="fas fa-gem"></i>
                         <h3>The Bride</h3>
                         <p class="contact-full-name">Christine Joyce C. Bentinganan</p>
                     </div>
@@ -810,12 +1677,88 @@
         </div>
     </section>
 
+    <!-- Special Thanks To Section -->
+    <section class="section thanks-section">
+        <div class="container thanks-container">
+            <h2 class="section-title" data-animate>Special Thanks To</h2>
+            <div class="thanks-track">
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/438874799_122103858158282976_6771666392619671359_n.jpg" alt="Special Thanks" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/475830321_1187548926713809_1838727543148466778_n.jpg" alt="Special Thanks" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/484559910_1394544808629844_379516007258427707_n.jpg" alt="Special Thanks" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/518128732_1196846082456610_5864555264600346350_n.jpg" alt="Special Thanks" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/C-Medica Pharmacy.png" alt="C-Medica Pharmacy" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/City Lights.png" alt="City Lights" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/COOTCO.png" alt="COOTCO" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/Even After.png" alt="Even After" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/Mackan.png" alt="Mackan" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/MMS.png" alt="MMS" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/SG.png" alt="SG" loading="lazy">
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/438874799_122103858158282976_6771666392619671359_n.jpg" alt="Special Thanks" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/475830321_1187548926713809_1838727543148466778_n.jpg" alt="Special Thanks" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/484559910_1394544808629844_379516007258427707_n.jpg" alt="Special Thanks" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/518128732_1196846082456610_5864555264600346350_n.jpg" alt="Special Thanks" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/C-Medica Pharmacy.png" alt="C-Medica Pharmacy" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/City Lights.png" alt="City Lights" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/COOTCO.png" alt="COOTCO" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/Even After.png" alt="Even After" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/Mackan.png" alt="Mackan" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/MMS.png" alt="MMS" loading="lazy">
+                </div>
+                <div class="thanks-logo-item">
+                    <img src="Thanks To/SG.png" alt="SG" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-wrapper">
                 <div class="footer-logo-center">
-                    <img src="logo-3.png" alt="Christine & Jay Logo" class="footer-logo-image">
+                    <img src="logo-3.png" alt="Christine and Jay Logo" class="footer-logo-image">
                 </div>
                 <div class="footer-content">
                     <p class="footer-tagline">Forever Begins January 22, 2026</p>

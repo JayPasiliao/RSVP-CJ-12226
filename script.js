@@ -69,32 +69,16 @@ document.querySelectorAll('[data-animate]').forEach(el => {
 // ==========================================
 // NAVIGATION BACKGROUND ON SCROLL
 // ==========================================
-let lastScroll = 0;
 const nav = document.querySelector('.nav-glass');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    const isDarkMode = body.classList.contains('dark-mode');
     
-    if (currentScroll > 100) {
-        if (isDarkMode) {
-            nav.style.background = 'rgba(0, 0, 0, 0.85)';
-            nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
-        } else {
-            nav.style.background = 'rgba(255, 255, 255, 0.95)';
-            nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-        }
+    if (currentScroll > 50) {
+        nav.classList.add('scrolled');
     } else {
-        if (isDarkMode) {
-            nav.style.background = 'rgba(0, 0, 0, 0.6)';
-            nav.style.boxShadow = 'none';
-        } else {
-            nav.style.background = 'rgba(255, 255, 255, 0.7)';
-            nav.style.boxShadow = 'none';
-        }
+        nav.classList.remove('scrolled');
     }
-    
-    lastScroll = currentScroll;
 });
 
 // ==========================================
@@ -188,27 +172,8 @@ function initHeroVideo() {
     }
 }
 
-// Initialize hero video when page loads
+// Initialize page when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize hero video
-    setTimeout(initHeroVideo, 500);
-    setTimeout(initHeroVideo, 1500);
-    setTimeout(initHeroVideo, 3000);
-    
-    // Also try when video is loaded
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) {
-        heroVideo.addEventListener('loadeddata', function() {
-            console.log('Hero video loaded, attempting to play');
-            initHeroVideo();
-        });
-        
-        heroVideo.addEventListener('canplay', function() {
-            console.log('Hero video can play, attempting to play');
-            initHeroVideo();
-        });
-    }
-    
     // Initialize folder tiles
     setTimeout(initFolderTiles, 1000);
     
@@ -451,6 +416,96 @@ const mapObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.map-container').forEach(map => {
     mapObserver.observe(map);
 });
+
+// ==========================================
+// GALLERY FILTERING - PILL TABS
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const movingGalleries = document.querySelectorAll('.moving-gallery-section');
+    const galleryGridViews = document.querySelectorAll('.gallery-grid-view');
+    
+    filterPills.forEach(pill => {
+        pill.addEventListener('click', function() {
+            // Remove active class from all pills
+            filterPills.forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked pill
+            this.classList.add('active');
+            
+            // Get the category
+            const category = this.getAttribute('data-category');
+            
+            if (category === 'all') {
+                // Show all moving galleries, hide grid views
+                movingGalleries.forEach(gallery => {
+                    gallery.style.display = 'block';
+                    gallery.style.opacity = '0';
+                    setTimeout(() => {
+                        gallery.style.transition = 'opacity 0.6s ease';
+                        gallery.style.opacity = '1';
+                    }, 50);
+                });
+                
+                galleryGridViews.forEach(grid => {
+                    grid.style.display = 'none';
+                });
+            } else {
+                // Hide all moving galleries
+                movingGalleries.forEach(gallery => {
+                    gallery.style.transition = 'opacity 0.4s ease';
+                    gallery.style.opacity = '0';
+                    setTimeout(() => {
+                        gallery.style.display = 'none';
+                    }, 400);
+                });
+                
+                // Show the corresponding grid view
+                galleryGridViews.forEach(grid => {
+                    const gridCategory = grid.getAttribute('data-category');
+                    if (gridCategory === category) {
+                        grid.style.display = 'block';
+                        grid.style.opacity = '0';
+                        setTimeout(() => {
+                            grid.style.transition = 'opacity 0.6s ease';
+                            grid.style.opacity = '1';
+                        }, 50);
+                    } else {
+                        grid.style.display = 'none';
+                    }
+                });
+            }
+        });
+    });
+    
+    // Add click handlers to gallery grid items
+    const galleryGridItems = document.querySelectorAll('.gallery-grid-item');
+    galleryGridItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                openPhotoModalFromGrid(img.src, img.alt);
+            }
+        });
+    });
+});
+
+// Function to open photo modal from grid view
+function openPhotoModalFromGrid(imageSrc, imageAlt) {
+    const modal = document.getElementById('photoModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    
+    if (modal && modalImage) {
+        modalImage.src = imageSrc;
+        modalImage.alt = imageAlt;
+        if (modalTitle) modalTitle.textContent = imageAlt || 'Photo';
+        if (modalDescription) modalDescription.textContent = '';
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
 
 // ==========================================
 // GALLERY FILTERING - ALBUM STYLE
@@ -1066,6 +1121,125 @@ function clearFormMessages() {
     document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
     document.querySelectorAll('.form-input').forEach(el => el.classList.remove('error'));
 }
+
+// ==========================================
+// VIDEO LIGHTBOX FUNCTIONALITY
+// ==========================================
+function openVideoLightbox(videoType, videoSrc, videoId) {
+    const lightbox = document.getElementById('videoLightbox');
+    const videoEmbed = document.getElementById('videoEmbed');
+    
+    if (!lightbox || !videoEmbed) {
+        console.error('Video lightbox elements not found');
+        return;
+    }
+    
+    // Clear previous content
+    videoEmbed.innerHTML = '';
+    
+    let videoElement;
+    
+    if (videoType === 'mp4') {
+        // Create video element for MP4
+        videoElement = document.createElement('video');
+        videoElement.src = videoSrc;
+        videoElement.controls = true;
+        videoElement.autoplay = true;
+        videoElement.playsInline = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.background = '#000';
+        videoEmbed.appendChild(videoElement);
+    } else if (videoType === 'youtube') {
+        // Create iframe for YouTube
+        videoElement = document.createElement('iframe');
+        videoElement.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+        videoElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        videoElement.allowFullscreen = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.border = 'none';
+        videoEmbed.appendChild(videoElement);
+    } else if (videoType === 'vimeo') {
+        // Create iframe for Vimeo
+        videoElement = document.createElement('iframe');
+        videoElement.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0`;
+        videoElement.allow = 'autoplay; fullscreen; picture-in-picture';
+        videoElement.allowFullscreen = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.border = 'none';
+        videoEmbed.appendChild(videoElement);
+    }
+    
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeVideoLightbox() {
+    const lightbox = document.getElementById('videoLightbox');
+    const videoEmbed = document.getElementById('videoEmbed');
+    
+    if (!lightbox) return;
+    
+    // Stop video playback
+    const video = videoEmbed.querySelector('video');
+    const iframe = videoEmbed.querySelector('iframe');
+    
+    if (video) {
+        video.pause();
+        video.src = '';
+    }
+    
+    if (iframe) {
+        iframe.src = '';
+    }
+    
+    // Clear content
+    videoEmbed.innerHTML = '';
+    
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Initialize video cards
+document.addEventListener('DOMContentLoaded', function() {
+    const videoCards = document.querySelectorAll('.video-card');
+    
+    videoCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const videoType = this.getAttribute('data-video-type');
+            const videoSrc = this.getAttribute('data-video-src');
+            const videoId = this.getAttribute('data-video-id');
+            
+            if (videoType && (videoSrc || videoId)) {
+                openVideoLightbox(videoType, videoSrc, videoId);
+            }
+        });
+    });
+    
+    // Close lightbox handlers
+    const lightbox = document.getElementById('videoLightbox');
+    if (lightbox) {
+        const backdrop = lightbox.querySelector('.video-lightbox-backdrop');
+        const closeBtn = lightbox.querySelector('.video-lightbox-close');
+        
+        if (backdrop) {
+            backdrop.addEventListener('click', closeVideoLightbox);
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeVideoLightbox);
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeVideoLightbox();
+            }
+        });
+    }
+});
 
 console.log('🎉 Wedding Website Loaded Successfully!');
 console.log('Christine Joyce & Jay - January 22, 2026 ❤️');
